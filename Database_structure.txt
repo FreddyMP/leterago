@@ -1,0 +1,197 @@
+Tablas{
+	Categorias{
+		   "id" :          "int(11), Primary_Key, Autoincrement, Not Null"
+		   "codigo" :      "Varchar(50), Null"
+		   "description" : "Varchar(100), Not Null"
+		   "create_date" : "Datetime, current, Not Null"
+		   "create_by" :   "Varchar(50), Not Null"
+		   "modify_by" :   "Varchar(50), Null"
+		   "modify_date" : "Datetime, Null"
+		   "delete_date" : "Datetime, current, Null"
+		   "delete_by" :   "Varchar(50), Null"
+	}
+	Almacenes{
+		"id" :           "int(11), Primary_Key, Autoincrement, Not Null"
+		"codigo" :       "Varchar(50), Null"
+		"description" :  "Varchar(100), Not Null"
+		"create_date" :  "Datetime, current, Not Null"
+		"create_by" :    "Varchar(50), Not Null"
+		"modify_by" :    "Varchar(50), Null"
+		"modify_date" :  "Datetime, Null"
+		"delete_date" :  "Datetime, current, Null"
+		"delete_by" :    "Varchar(50), Null"
+	}
+	Equipos{
+		"id" :           "int(11), Primary_Key, Autoincrement, Not Null"
+		"codigo" :       "Varchar(50), Null"
+		"description" :  "Varchar(100), Not Null"
+		"Orden":         "Char(10), Default(0), Not Null"
+		"id_categoria" : "int(11), Foregn_Key(Categoria(id)), Not Null"
+		"id_almacen" :      "int(11), Foregn_key(Almacenes(id)), Not Null"
+		"ubicacion" :    "Text(300), Null"
+ 		"create_date" :  "Datetime, current, Not Null"
+		"create_by" :    "Varchar(50), Not Null"
+		"modify_by" :    "Varchar(50), Null"
+		"modify_date" :  "Datetime, Null"
+		"delete_date" :  "Datetime, current, Null"
+		"delete_by" :    "Varchar(50), Null"
+	}
+	Actividades{
+		"id":           "int(11), Primary_Key, Autoincrement, Not Null"
+		"description" : "Varchar(100), Not Null"
+		"tipoActividad":"char(1), not null"<-- esto es si es limpieza general o revision de sistema electrico y mecanico
+                "create_date" : "Datetime, current, Not Null"
+		"create_by" :   "Varchar(50), Not Null"
+		"modify_by" :   "Varchar(50), Null"
+		"modify_date" : "Datetime, Null"
+		"delete_date" : "Datetime, current, Null"
+		"delete_by" :   "Varchar(50), Null"
+	}
+	Equipos_Actividad{
+		"id":            "int(11), Primary_Key, Autoincrement, Not Null"
+		"id_actividad":  "int(11), Foregn_key(actividad(id)), Not Null"
+		"id_equipo":     "int(11), Foregn_key(equipo(id)), Not Null"
+   		"create_date" :  "Datetime, current, Not Null"
+		"create_by" :    "Varchar(50), Not Null"
+		"modify_by" :    "Varchar(50), Null"
+		"modify_date" :  "Datetime, Null"
+		"delete_date" :  "Datetime, Null"
+		"delete_by" :    "Varchar(50), Null"
+	}
+	
+	Frecuencias{
+		"id":           "int(11), Primary_Key, Autoincrement, Not Null"
+		"description" : "Varchar(100), Not Null"
+                "create_date" : "Datetime, current, Not Null"
+		"create_by" :   "Varchar(50), Not Null"
+		"modify_by" :   "Varchar(50), Null"
+		"modify_date" : "Datetime, Null"
+		"delete_date" : "Datetime, Null"
+		"delete_by" :   "Varchar(50), Null"
+	}
+	ProgramacionMantenimientosHeader{
+		"id":                    "int(11), Primary_Key, Autoincrement, Not Null"
+		"id_Equipos_Actividad" : "int(11), Foregn_key(equipo_actividad(id)), Not Null"
+		"id_frecuencia":         "int(11), Foregn_key(frecuencia(id)), Not Null"
+		"Version":               "int(3), Null"
+                "create_date" :          "Datetime, current, Not Null"
+		"create_by" :            "Varchar(50), Not Null"
+		"modify_by" :            "Varchar(50), Null"
+		"modify_date" :          "Datetime, Null"
+		"delete_date" :          "Datetime, Null"
+		"delete_by" :            "Varchar(50), Null"
+	}
+	ProgramacionMantenimientosDetails{
+		"id":                                   "int(11), Primary_Key, Autoincrement, Not Null"
+		"id_ProgramacionMantenimientosHeader":  "int(11), Foregn_key(ProgramacionMantenimientosHeader(id)), Not Null"
+		"Fecha" :                               "Datetime, Null"
+                "create_date" :                         "Datetime, current, Not Null"
+		"create_by" :                           "Varchar(50), Not Null"
+		"modify_by" :                           "Varchar(50), Null"
+		"modify_date" :                         "Datetime, Null"
+		"delete_date" :                         "Datetime, Null"
+		"delete_by" :                           "Varchar(50), Null"
+	}
+
+	OrdenTrabajoHeader{
+		"id":                   "int(11), Primary_Key, Autoincrement, Not Null"
+		"documentoNum":         "Varchar(50), Not Null"
+		"version":              "int(3), Null"
+		"documentoRelacionado": "Varchar(50), Not Null"
+		"orderNum":             "Varchar(50), Not Null"
+		"fecha" :               "Datetime, Not Null"
+		"hora" :                "Varchar(50), Not Null"
+		"solicitadoPor" :       "Varchar(100), Not Null"
+		"departamento" :        "Varchar(100), Not Null"
+		"nivelPrioridad" :      "Varchar(3), Not Null"
+		"areaOEquipo":          "Varchar(100), Not Null"
+		"codigo":               "Varchar(50), Not Null"
+		"ubicacion":	        "Varchar(100), Not Null"
+		"descripcion":          "Text(), Not Null"
+                "create_date" :          "Datetime, current, Not Null"
+		"create_by" :            "Varchar(50), Not Null"
+		"modify_by" :            "Varchar(50), Null"
+		"modify_date" :          "Datetime, Null"
+		"delete_date" :          "Datetime, Null"
+		"delete_by" :            "Varchar(50), Null"
+	}
+	OrdenTrabajoDetail{
+		"id":                     "int(11), Primary_Key, Autoincrement, Not Null"
+		"id_OrdenTrabajoHeader":  "int(11), Foregn_key(equipo_actividad(id_OrdenTrabajoHeader)), Not Null"
+		"realizado_por":          "Varchar(100), Not Null"
+		"fecha":                  "datetime, Not Null"
+		"horaIni":                "Varchar(10), Not Null"
+		"horaFin":                "Varchar(10), Not Null"
+                "create_date" :          "Datetime, current, Not Null"
+		"create_by" :            "Varchar(50), Not Null"
+		"modify_by" :            "Varchar(50), Null"
+		"modify_date" :          "Datetime, Null"
+		"delete_date" :          "Datetime, Null"
+		"delete_by" :            "Varchar(50), Null"
+	}
+	
+	Rol{
+		"id":			 "int(11), Primary_Key, Autoincrement, Not Null"
+		"description"		 "Varchar(100), Not Null"
+                "create_date" :          "Datetime, current, Not Null"
+		"create_by" :            "Varchar(50), Not Null"
+		"modify_by" :            "Varchar(50), Null"
+		"modify_date" :          "Datetime, Null"
+		"delete_date" :          "Datetime, Null"
+		"delete_by" :            "Varchar(50), Null"
+		
+	}
+	RolPermisos{
+		"id":                                              "int(11), Primary_Key, Autoincrement, Not Null"
+		"id_Rol":                                     	   "int(11), Foregn_key(equipo_actividad(id_Rol)), Not Null"
+		"Modulo_Ordenes":				   "Char(1), Not Null"
+		"Crear_Modulo_Ordenes":				   "Char(1), Not Null"													
+		"Editar_Modulo_Ordenes":		           "Char(1), Not Null"
+		"Eliminar_Modulo_Ordenes":		           "Char(1), Not Null"
+		"Modulo_Usuarios":				   "Char(1), Not Null"
+		"Crear_Modulo_Usuarios":			   "Char(1), Not Null"
+		"Editar_Modulo_Usuarios":		           "Char(1), Not Null"
+		"Eliminar_Modulo_Usuarios":		           "Char(1), Not Null"
+		"Modulo_Roles":				           "Char(1), Not Null"
+		"Crear_Modulo_Roles":				   "Char(1), Not Null"
+		"Editar_Modulo_Roles":				   "Char(1), Not Null"
+		"Eliminar_Modulo_Roles":			   "Char(1), Not Null"
+		"Modulo_ProgramaMantenimiento":			   "Char(1), Not Null"
+		"Crear_Modulo_ProgramaMantenimiento":		   "Char(1), Not Null"
+		"Edita_Modulo_ProgramaMantenimiento":		   "Char(1), Not Null"
+		"Eliminar_Modulo_ProgramaMantenimiento":	   "Char(1), Not Null"
+		"Frecuencias":				           "Char(1), Not Null"
+		"Crear_Frecuencias":				   "Char(1), Not Null"
+		"Editar_Frecuencias":				   "Char(1), Not Null"
+		"Eliminar_Frecuencias":				   "Char(1), Not Null"
+		"Actividades":				           "Char(1), Not Null"
+		"Crear_Actividades":				   "Char(1), Not Null"
+		"Editar_Actividades":				   "Char(1), Not Null"
+		"Eliminar_Actividades":				   "Char(1), Not Null"
+		"Equipos":				           "Char(1), Not Null"
+		"Crear_Equipos":				   "Char(1), Not Null"
+		"Editar_Equipos":				   "Char(1), Not Null"
+		"Eliminar_Equipos":				   "Char(1), Not Null"
+		"Categorias":				           "Char(1), Not Null"
+		"Crear_Categorias":				   "Char(1), Not Null"
+		"Editar_Categorias":				   "Char(1), Not Null"
+		"Eliminar_Categorias":				   "Char(1), Not Null"
+	}
+
+	Usuarios{
+		"id": 			 "int(11), Primary_Key, Autoincrement, Not Null"
+		"username":		 "Varchar(100), Not Null"
+		"password": 		 "Varchar(100), Not Null" <---Encriptado con hash
+		"id_rol": 		 "int(11), Foregn_key(equipo_actividad(id_Rol)), Not Null"
+		"last_session_init": 	 "Datetime, null"
+   		"create_date" :          "Datetime, current, Not Null"
+		"create_by" :            "Varchar(50), Not Null"
+		"modify_by" :            "Varchar(50), Null"
+		"modify_date" :          "Datetime, Null"
+		"delete_date" :          "Datetime, Null"
+		"delete_by" :            "Varchar(50), Null"
+	}
+	
+	
+
+}
