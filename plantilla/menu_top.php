@@ -86,6 +86,8 @@ if(isset($_SESSION["usuario_Log_Username"])){
           Usuarios
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="Create_roles.php">Usuarios</a>
+        <a class="dropdown-item" href="Create_roles.php">Crear usuario</a>
           <a class="dropdown-item" href="Create_roles.php">Crear rol</a>
           <?php
            if($permisos["Modulo_Roles"] == 1){
