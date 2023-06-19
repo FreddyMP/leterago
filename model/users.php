@@ -31,7 +31,7 @@ include("kon.php");
 
         public function logOut(){
             session_destroy();
-            header("location:../../index.php");
+            header("location:../index.php");
         }
     }
 

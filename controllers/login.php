@@ -13,9 +13,9 @@
         $_SESSION["usuario_Log_Username"] = $acceso[2];
         $_SESSION["usuario_Log_Id"] = $acceso[1];
         $_SESSION["usuario_Log_Rol"] = $acceso[3];
-        header("location:../../views/home.php");
+        header("location:../home.php");
     }else{
-        header("location:../../index.php?Error_log=1");
+        header("location:../index.php?Error_log=1");
     }
 
 ?>

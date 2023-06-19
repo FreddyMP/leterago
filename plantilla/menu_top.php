@@ -7,8 +7,15 @@
 session_start();
 
 if(isset($_SESSION["usuario_Log_Username"])){
+  include("config/cone.php");  
+    $permisos_instancia = new Conexion();
 
+    $permisos_con = $permisos_instancia->conectar();
+    $id_log = $_SESSION["usuario_Log_Rol"];
+    $query_permisos = "SELECT Modulo_Roles from rolpermisos where id_Rol = $id_log";
+    $exc_permisos = mysqli_query($permisos_con,$query_permisos);
 
+    $permisos = mysqli_fetch_assoc($exc_permisos);
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -80,7 +87,14 @@ if(isset($_SESSION["usuario_Log_Username"])){
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="Create_roles.php">Crear rol</a>
-          <a class="dropdown-item" href="list_roles.php">Roles</a>
+          <?php
+           if($permisos["Modulo_Roles"] == 1){
+            ?>
+            <a class="dropdown-item" href="list_roles.php">Roles</a>
+            <?php
+           }
+          ?>
+         
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
@@ -92,7 +106,7 @@ if(isset($_SESSION["usuario_Log_Username"])){
          <?php
 
          echo $_SESSION["usuario_Log_Username"];
-         ?> <a href="../backend/controllers/logout.php">Salir</a>
+         ?> <a href="controllers/logout.php">Salir</a>
         </a>
     </form>
   </div>
@@ -100,6 +114,6 @@ if(isset($_SESSION["usuario_Log_Username"])){
 
 <?php
 }else{
-  header("location:../index.php");
+  header("location:index.php");
 }
 ?>

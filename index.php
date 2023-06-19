@@ -1,8 +1,8 @@
-<link rel="stylesheet" href="views/css/bootstrap.min.css">
-<link rel="stylesheet" href="views/css/Top.css">
-<script src="views/js/jquery-3.2.1.slim.min.js"></script>
-<script src="views/js/popper.min.js" ></script>
-<script src="views/js/bootstrap.min.js" ></script>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/Top.css">
+<script src="js/jquery-3.2.1.slim.min.js"></script>
+<script src="js/popper.min.js" ></script>
+<script src="js/bootstrap.min.js" ></script>
 
 <hgroup>
   <?php
@@ -17,11 +17,11 @@
 <?php
     }
 ?>
-  <h1><img width="300" src="views/imagen/logo.png" alt=""></h1>
+  <h1><img width="300" src="imagen/logo.png" alt=""></h1>
   <h3>Mantenimiento</h3>
 </hgroup>
-<form method="post" action = "backend/controllers/login.php">
-    <link rel="stylesheet" href="views/css/login.css">
+<form method="post" action = "controllers/login.php">
+    <link rel="stylesheet" href="css/login.css">
   <div class="group">
     <input type="text" name="username"><span class="highlight"></span><span class="bar"></span>
     <label>Name</label>
