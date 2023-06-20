@@ -182,6 +182,8 @@ Tablas{
 		"id": 			 "int(11), Primary_Key, Autoincrement, Not Null"
 		"username":		 "Varchar(100), Not Null"
 		"password": 		 "Varchar(100), Not Null" <---Encriptado con hash
+		"nombre" :        "Varchar(100), Not Null"
+		"apellido" :        "Varchar(100), Not Null"
 		"id_rol": 		 "int(11), Foregn_key(equipo_actividad(id_Rol)), Not Null"
 		"last_session_init": 	 "Datetime, null"
    		"create_date" :          "Datetime, current, Not Null"

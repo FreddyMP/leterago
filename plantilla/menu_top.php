@@ -8,14 +8,27 @@ session_start();
 
 if(isset($_SESSION["usuario_Log_Username"])){
   include("config/cone.php");  
-    $permisos_instancia = new Conexion();
+  //Conexion
+    $con = new Conexion();
 
-    $permisos_con = $permisos_instancia->conectar();
+    $permisos_con = $con->conectar();
     $id_log = $_SESSION["usuario_Log_Rol"];
+
     $query_permisos = "SELECT Modulo_Roles from rolpermisos where id_Rol = $id_log";
     $exc_permisos = mysqli_query($permisos_con,$query_permisos);
-
     $permisos = mysqli_fetch_assoc($exc_permisos);
+
+
+    $lista_roles = $con->conectar();
+    $query = "SELECT * from rol where delete_date is null and create_by <> 0 ";
+    $exc_query = mysqli_query($lista_roles,$query);
+
+
+    $lista_usuarios = $con->conectar();
+    $query = "SELECT * from usuarios where delete_date is null  and create_by <>0";
+    $exc_usuarios = mysqli_query($lista_usuarios,$query);
+
+
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -86,9 +99,9 @@ if(isset($_SESSION["usuario_Log_Username"])){
           Usuarios
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="Create_roles.php">Usuarios</a>
-        <a class="dropdown-item" href="Create_roles.php">Crear usuario</a>
-          <a class="dropdown-item" href="Create_roles.php">Crear rol</a>
+        <a class="dropdown-item" href="list_usuarios.php">Usuarios</a>
+        <a class="dropdown-item" href="create_users.php">Crear usuario</a>
+          <a class="dropdown-item" href="create_roles.php">Crear rol</a>
           <?php
            if($permisos["Modulo_Roles"] == 1){
             ?>
