@@ -1,5 +1,8 @@
 <?php
     include("plantilla/menu_top.php");
+    $lista_usuarios = $con->conectar();
+    $query = "SELECT * from usuarios where delete_date is null  and create_by <>0";
+    $exc_usuarios = mysqli_query($lista_usuarios,$query);
 
 ?>
 <link rel="stylesheet" href="css/form.css">

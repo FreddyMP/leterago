@@ -9,6 +9,10 @@
      $con = $lista->conectar();
  
      $id = $_GET["id"];
+
+    
+     $query = "SELECT * from rol where delete_date is null and create_by <> 0 ";
+     $exc_query = mysqli_query($con, $query);
  
      $query = "SELECT * from usuarios where id = $id and delete_date is null";
      $exc_usuarios = mysqli_query($con,$query);

@@ -57,11 +57,14 @@ class Rules{
 
     }
 
-    public function update($id, $roles, $crear_rol, $editar_rol, $eliminar_rol){
+    public function update($id, $roles, $crear_rol, $editar_rol, $eliminar_rol, $usuarios, $crear_usuarios, $editar_usuarios, $eliminar_usuarios){
         $conectar = new Kon();
         $con = $conectar->conn();
 
-        $query = "UPDATE rolpermisos set Modulo_Roles = $roles, Crear_Modulo_Roles =  $crear_rol, Editar_Modulo_Roles = $editar_rol, Eliminar_Modulo_Roles = $eliminar_rol where id_rol = $id";
+        $query = "UPDATE rolpermisos set 
+        Modulo_Roles = $roles, Crear_Modulo_Roles =  $crear_rol, Editar_Modulo_Roles = $editar_rol, Eliminar_Modulo_Roles = $eliminar_rol,
+        Modulo_Usuarios = $usuarios, Crear_Modulo_Usuarios =  $crear_usuarios, Editar_Modulo_Usuarios = $editar_usuarios, Eliminar_Modulo_Usuarios = $eliminar_usuarios
+        where id_rol = $id";
         $Insert_result = false;
         try {
             $exc_query = mysqli_query($con, $query);

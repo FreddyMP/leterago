@@ -29,30 +29,78 @@
                 <div class="col-md-3 pt-3">
                     Usuarios
                     <select class="form-control" name="usuarios" id="">
-                        <option value="1">Si</option>
-                        <option value="0">No</option>
+                    <?php
+                            if($rol_permisos["Modulo_Usuarios"]== '1')
+                            {
+                                ?>
+                                    <option value="1">Si</option>
+                                    <option value="0">No</option>
+                                <?php
+                            }else{
+                                ?>
+                                    <option value="0">No</option>
+                                    <option value="1">Si</option>
+                                <?php
+                            }
+                        ?>
                     </select>
                 </div>
                 <div class="col-md-3 pt-3">
                     Crear usuarios
-                    <select class="form-control" name="usuarios" id="">
-                        <option value="1">Si</option>
-                        <option value="0">No</option>
+                    <select class="form-control" name="crear_usuarios" id="">
+                    <?php
+                            if($rol_permisos["Crear_Modulo_Roles"]== '1')
+                            {
+                                ?>
+                                    <option value="1">Si</option>
+                                    <option value="0">No</option>
+                                <?php
+                            }else{
+                                ?>
+                                    <option value="0">No</option>
+                                    <option value="1">Si</option>
+                                <?php
+                            }
+                        ?>
                     </select>
                 </div>
                 <input type="hidden" value="<?php echo $id ?>" name="id">
                 <div class="col-md-3 pt-3">
                     Editar usuarios
                     <select class="form-control" name="editar_usuarios" id="">
-                        <option value="1">Si</option>
-                        <option value="0">No</option>
+                    <?php
+                            if($rol_permisos["Editar_Modulo_Usuarios"]== '1')
+                            {
+                                ?>
+                                    <option value="1">Si</option>
+                                    <option value="0">No</option>
+                                <?php
+                            }else{
+                                ?>
+                                    <option value="0">No</option>
+                                    <option value="1">Si</option>
+                                <?php
+                            }
+                        ?>
                     </select>
                 </div>
                 <div class="col-md-3 pt-3">
                     Eliminar usuarios
                     <select class="form-control" name="eliminar_usuarios" id="">
-                        <option value="1">Si</option>
-                        <option value="0">No</option>
+                    <?php
+                            if($rol_permisos["Eliminar_Modulo_Usuarios"]== '1')
+                            {
+                                ?>
+                                    <option value="1">Si</option>
+                                    <option value="0">No</option>
+                                <?php
+                            }else{
+                                ?>
+                                    <option value="0">No</option>
+                                    <option value="1">Si</option>
+                                <?php
+                            }
+                        ?>
                     </select>
                 </div>
                 <div class="col-md-3 pt-3">

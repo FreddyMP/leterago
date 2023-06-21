@@ -1,0 +1,10 @@
+Diseno de bases de datos y creacion de bases de datos mysql  = 32,000
+Diseno linea visual del software de mantenimiento            = 10,000
+Creacion de modulo de gestion de usuarios y roles	     = 40,000
+Creacion de modulo de gestion de almacenes y ubicaciones     = 40,000
+Creacion de modulo de categorias                             = 20,000
+Creacion de modulo de Actividades			     = 19,000
+Creacion de programacion calendar de ejecucion               = 50,000
+Creacion de modulo de Mantenimiento                          = 45,000
+Implementacion                                               = 60,000
+ 
