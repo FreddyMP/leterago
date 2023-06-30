@@ -1,10 +1,8 @@
 <?php
-include("kon.php");
-
     class Users{
 
         public function logIn(String $username, String $password ){
-
+            include("kon.php");
             $conectar = new Kon();
             $con = $conectar->conn();
 
@@ -30,13 +28,14 @@ include("kon.php");
         }
 
         public function logOut(){
+            include("kon.php");
             session_destroy();
             
             header("location:../index.php");
         }
 
         public function create_user($username, $password, $name, $lastname, $rol){
-
+            include("kon.php");
             session_start();
             $conexion = new Kon();
 
@@ -56,6 +55,7 @@ include("kon.php");
         }
 
         public function edit_user($username, $password, $name, $lastname, $rol, $id){
+            include("kon.php");
             $conexion = new Kon();
             $con = $conexion->conn();
 
@@ -72,6 +72,35 @@ include("kon.php");
 
         }
 
+        public function permisos(){
+            include("kon.php");
+            $conexion = new Kon();
+
+            $con = $conexion->conn();
+         
+            $rol = $_SESSION["usuario_Log_Rol"];
+            $query = "SELECT * FROM rolpermisos where id_Rol = $rol";
+
+            $exc_query = mysqli_query($con, $query);
+
+            $Permisos = mysqli_fetch_assoc($exc_query);
+
+            return $Permisos;
+
+        }
+
+        public function list(){
+          
+            $conexion = new Kon();
+
+            $con = $conexion->conn();
+            $query = "SELECT * FROM usuarios where delete_date is null ";
+
+            $exc_query = mysqli_query($con, $query);
+         
+
+            return $exc_query;
+        }
     }
 
 ?>

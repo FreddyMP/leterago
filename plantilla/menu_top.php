@@ -1,22 +1,15 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/Top.css">
 <script src="js/jquery-3.2.1.slim.min.js"></script>
-<script src="js/popper.min.js" ></script>
+<script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js" ></script>
 <?php
 session_start();
-
 if(isset($_SESSION["usuario_Log_Username"])){
-  include("config/cone.php");  
-  //Conexion
-    $con = new Conexion();
+  include("model/users.php");  
 
-    $permisos_con = $con->conectar();
-    $id_log = $_SESSION["usuario_Log_Rol"];
-
-    $query_permisos = "SELECT * from rolpermisos where id_Rol = $id_log";
-    $exc_permisos = mysqli_query($permisos_con,$query_permisos);
-    $permisos = mysqli_fetch_assoc($exc_permisos);
+  $Users_instance = new Users();
+  $permisos = $Users_instance->permisos();
 
 ?>
 
@@ -33,8 +26,11 @@ if(isset($_SESSION["usuario_Log_Username"])){
           Programacion
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="list_programas.php">Programas</a>
+           <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="crear_programas.php">Crear programa</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="crear_programas.php">Calendario</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
@@ -44,19 +40,29 @@ if(isset($_SESSION["usuario_Log_Username"])){
           Mantenimiento
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="list_mantenimientos.php">Reportes de mantenimiento</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="crear_mantenimiento.php">Crear mantenimiento</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="list_ordenes.php">Ordenes</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="crear_ordenes.php">Crear Ordenes</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Actividades
+          Equipos
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="list_equipos.php">Equipos</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="crear_equipo.php">Crear equipos</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Actividades</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Crear actividades</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
@@ -66,8 +72,8 @@ if(isset($_SESSION["usuario_Log_Username"])){
           Categorias
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="list_categorias.php">Categorias</a>
+          <a class="dropdown-item" href="crear_categorias.php">Crear categorias</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
@@ -81,15 +87,19 @@ if(isset($_SESSION["usuario_Log_Username"])){
            if($permisos["Modulo_Almacenes"] == 1){
             ?>
           <a class="dropdown-item" href="list_almacenes.php">Almacenes</a>
+          <div class="dropdown-divider"></div>
           <?php
            }
            if($permisos["Modulo_Almacenes"] == 1 || $permisos["Modulo_Roles"]== 1){
             ?>
           <a class="dropdown-item" href="create_almacen.php">Crear almacenes</a>
+          <div class="dropdown-divider"></div>
             <?php
            }
             ?>
-          <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="list_ubicaciones.php">Ubicaciones</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="crear_ubicacion.php">Crear ubicaciones</a>
         </div>
       </li>
       <?php
@@ -102,7 +112,6 @@ if(isset($_SESSION["usuario_Log_Username"])){
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <?php
-           
            if($permisos["Modulo_Usuarios"] == 1){
             ?>
               <a class="dropdown-item" href="list_usuarios.php">Usuarios</a>
