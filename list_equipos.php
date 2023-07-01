@@ -1,5 +1,9 @@
 <?php
     include("plantilla/menu_top.php");
+    include("model/equipos.php");
+
+    $equipos_instance = New Equipos();
+    $exc_equipos = $equipos_instance->list();
 ?>
 <link rel="stylesheet" href="css/form.css">
 <div class="Container">
@@ -11,29 +15,29 @@
     <tr>
       <th scope="col">Codigo</th>
       <th scope="col">Nombre</th>
-      <th scope="col">Actividades</th>
+      <th scope="col">Marca</th>
+      <th scope="col">Modelo</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
+    <?php 
+      while($equipos = mysqli_fetch_assoc($exc_equipos)){
+
+    ?>
     <tr>
-      <th scope="row">BB001</th>
-      <td>Bomba de agua helada</td>
-      <td>Revision electrica, Revision del drenaje</td>
+      <th scope="row"><?php echo $equipos["codigo"] ?></th>
+      <td><?php echo $equipos["description"]?></td>
+      <td><?php echo $equipos["marca"]?></td>
+      <td><?php echo $equipos["modelo"]?></td>
       <td>
-            <a href="edit_usuario.php?id="><button class="btn btn-warning">Editar</button></a>
-            <button class="btn btn-danger">Eliminar</button>
+            <a href="edit_usuario.php?id="><button class="btn btn-warning"> <small>Editar</small></button></a>
+            <button class="btn btn-danger"><small>Eliminar</small></button>
       </td>
     </tr>
-    <tr>
-      <th scope="row">AA001</th>
-      <td>Aire Acondicionado split pared</td>
-      <td>Limpieza de filtro, Revision del drenaje</td>
-      <td>
-            <a href="edit_usuario.php?id"><button class="btn btn-warning">Editar</button></a>
-            <button class="btn btn-danger">Eliminar</button>
-      </td>
-    </tr>
+    <?php
+      }
+    ?>
  
   </tbody>
 </table>

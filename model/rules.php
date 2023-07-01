@@ -1,8 +1,9 @@
 <?php
-include("kon.php");
+
 class Rules{
 
     public function create_rule(String $descripcion, String $creado_por = "Super_admin"){
+        include("kon.php");
         $conectar = new Kon();
         $con = $conectar->conn();
 
@@ -19,8 +20,10 @@ class Rules{
     }
 
     public function permisos_default(){
+        include("kon.php");
         $conectar = new Kon();
         $con = $conectar->conn();
+        
         $last_id=0;
 
         $query = "SELECT id from rol order by id desc limit 1";
@@ -45,7 +48,7 @@ class Rules{
         return $Insert_result;
     }
 
-    public function List(){
+    public function list(){
         $conectar = new Kon();
         $con = $conectar->conn();
 
@@ -53,11 +56,10 @@ class Rules{
         $exc_query = mysqli_query($con, $query);
 
        return $exc_query;
-        
-
     }
 
     public function update($id, $roles, $crear_rol, $editar_rol, $eliminar_rol, $usuarios, $crear_usuarios, $editar_usuarios, $eliminar_usuarios){
+        include("kon.php");
         $conectar = new Kon();
         $con = $conectar->conn();
 
@@ -75,5 +77,29 @@ class Rules{
 
         return $Insert_result;
     }
+
+    
+    public function find($id){
+        $conectar = new Kon();
+        $con = $conectar->conn();
+
+        $query = "SELECT id, description FROM rol where id = $id ";
+        $exc_query = mysqli_query($con, $query);
+                        
+       return $exc_query;
+    }
+
+    public function find_edit($id){
+        $conectar = new Kon();
+        $con = $conectar->conn();
+
+        $query = "SELECT * from rol inner join rolpermisos on rolpermisos.id_Rol = rol.id where rol.id = $id ";
+        $exc_query = mysqli_query($con, $query);
+
+        $Rules = mysqli_fetch_assoc($exc_query);
+                        
+       return $Rules;
+    }
 }
+
 ?>

@@ -1,12 +1,14 @@
 <?php
     include("plantilla/menu_top.php"); 
+    include("model/rules.php");
+
+    $rules_instance = new Rules();
+
+    $exc_query = $rules_instance->list();
 ?>
 <link rel="stylesheet" href="css/form.css">
 <div class="Container"><br>
 <?php
-    $lista_roles = $con->conectar();
-    $query = "SELECT * from rol where delete_date is null and create_by <> 0 ";
-    $exc_query = mysqli_query($lista_roles, $query);
     if(isset($_GET["error_create"])){
   ?>
     <div class="alert alert-danger" role="alert">

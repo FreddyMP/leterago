@@ -1,8 +1,10 @@
 <?php
-    include("plantilla/menu_top.php");
-    $lista_almacenes = $con->conectar();
-    $query = "SELECT * from almacenes where delete_date is null";
-    $exc_almacenes = mysqli_query($lista_almacenes,$query);
+  include("plantilla/menu_top.php");
+  include('model/almacenes.php');
+
+  $Almacenes_instance = new Almacenes();
+  $almacenes = $Almacenes_instance->list();
+
 ?>
 <link rel="stylesheet" href="css/form.css">
 <div class="Container">

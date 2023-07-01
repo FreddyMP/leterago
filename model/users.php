@@ -7,7 +7,7 @@
             $con = $conectar->conn();
 
             $password_hash = hash('ripemd160',$password);
-            $query = "SELECT id, id_rol, username, password from usuarios where username= '$username' and password = '$password_hash' limit 1";
+            $query = "SELECT id, id_rol, username, password from usuarios where username= '$username' and password = '$password_hash' and delete_date is null limit 1";
             $exc_query = mysqli_query($con, $query);
 
             $acceso= 0;
@@ -94,12 +94,38 @@
             $conexion = new Kon();
 
             $con = $conexion->conn();
-            $query = "SELECT * FROM usuarios where delete_date is null ";
+            $query = "SELECT * FROM usuarios where id <> 1 and delete_date is null ";
 
             $exc_query = mysqli_query($con, $query);
          
 
             return $exc_query;
+        }
+
+        public function find ($id){
+
+            $conexion = new Kon();
+
+            $con = $conexion->conn();
+            $query = "SELECT * FROM usuarios where id = $id and delete_date is null ";
+
+            $exc_query = mysqli_query($con, $query);
+
+            $Usuarios = mysqli_fetch_assoc($exc_query);
+         
+
+            return $Usuarios;
+        }
+
+        public function delete($id, $id_username){
+            include("kon.php");
+            $conexion = new Kon();
+            $con = $conexion->conn();
+
+            $delete_date = date("Y-m-d :His");
+
+            $query = "UPDATE usuarios set delete_date =  '$delete_date', delete_by = '$id_username' where  id = $id";
+            $exc_query= $con->query($query);
         }
     }
 

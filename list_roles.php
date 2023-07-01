@@ -1,8 +1,11 @@
 <?php
     include("plantilla/menu_top.php");
-    $lista_roles = $con->conectar();
-    $query = "SELECT * from rol where delete_date is null and create_by <> 0 ";
-    $exc_query = mysqli_query($lista_roles, $query);
+    include("model/rules.php");
+    $Roles_instance = new Rules();
+
+    $Roles = $Roles_instance->list();
+    $exc_roles = $Roles;          
+
 
 ?>
 <link rel="stylesheet" href="css/form.css">
@@ -20,7 +23,7 @@
   </thead>
   <tbody>
     <?php
-      while($row = mysqli_fetch_assoc($exc_query)){
+      while($row = mysqli_fetch_assoc($exc_roles)){
     ?>
     <tr>
       <th scope="row"><?php echo $row["id"]?></th>

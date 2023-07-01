@@ -1,30 +1,22 @@
 <?php
     include("plantilla/menu_top.php"); 
+    include("model/rules.php");
+
+    $id= $_GET["id"];
+
+    $usuario_instance = new Users();
+    $usuario = $usuario_instance->find($id);
+
+    $rule_id = $usuario["id_rol"];
+    $Rules_instance = new Rules();
+    $rol = mysqli_fetch_assoc($Rules_instance->find($rule_id));
+    $exc_query = $Rules_instance->list();
+
+
 ?>
 <link rel="stylesheet" href="css/form.css">
 <div class="Container"><br>
 <?php
-     $lista = new Conexion();
-
-     $con = $lista->conectar();
- 
-     $id = $_GET["id"];
-
-    
-     $query = "SELECT * from rol where delete_date is null and create_by <> 0 ";
-     $exc_query = mysqli_query($con, $query);
- 
-     $query = "SELECT * from usuarios where id = $id and delete_date is null";
-     $exc_usuarios = mysqli_query($con,$query);
- 
-     $usuario = mysqli_fetch_assoc($exc_usuarios);
-     $id_rol = $usuario["id_rol"];
-
-     $query2 = "SELECT * from rol where id = $id_rol and delete_date is null";
-     $exc_rol = mysqli_query($con,$query2);
- 
-     $rol = mysqli_fetch_assoc($exc_rol);
-
     if(isset($_GET["error_create"])){
   ?>
     <div class="alert alert-danger" role="alert">

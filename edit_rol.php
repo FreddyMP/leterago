@@ -1,21 +1,12 @@
 <?php
     include("plantilla/menu_top.php");  
-    $lista = new Conexion();
+    include("model/rules.php");
 
-    $con = $lista->conectar();
+    $rol_instance = new Rules();
 
-    $id = $_GET["id"];
+    $id_rol = $_GET["id"];
 
-    $query = "SELECT * from rol where id = $id and delete_date is null";
-    $exc_query = mysqli_query($con,$query);
-
-    $query_permisos = "SELECT * from rolpermisos where id_Rol = $id";
-    $exc_query_permisos = mysqli_query($con,$query_permisos);
-
-    $rol = mysqli_fetch_assoc($exc_query);
-    $rol_permisos = mysqli_fetch_assoc($exc_query_permisos);
-    $rol_description = $rol["description"];
-   
+    $rol_permisos = $rol_instance->find_edit($id_rol);
 ?>
 <link rel="stylesheet" href="css/form.css">
 <div class="Container"><br>
@@ -24,7 +15,7 @@
         <form action="controllers/editar_rol.php" method="post">
             <div class="row">
                 <div class="col-md-12">
-                    <input class="form-control" name="descripcion" value="<?php echo $rol_description ?>" type="text" placeholder="Descripcion">
+                    <input class="form-control" name="descripcion" value="<?php echo $rol_permisos["description"]?>" type="text" placeholder="Descripcion">
                 </div>
                 <div class="col-md-3 pt-3">
                     Usuarios
@@ -64,7 +55,7 @@
                         ?>
                     </select>
                 </div>
-                <input type="hidden" value="<?php echo $id ?>" name="id">
+                <input type="hidden" value="<?php echo $id_rol ?>" name="id">
                 <div class="col-md-3 pt-3">
                     Editar usuarios
                     <select class="form-control" name="editar_usuarios" id="">

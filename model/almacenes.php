@@ -1,8 +1,8 @@
 <?php
-include("kon.php");
 
 class Almacenes{
     public function create_almacen($codigo, $description){
+        include("kon.php");
         $conexion = new Kon();
         session_start();
         $con = $conexion->conn();
@@ -19,6 +19,7 @@ class Almacenes{
     }
 
     public function editar_almacen($id, $codigo, $description){
+        include("kon.php");
         $conexion = new Kon();
         session_start();
         $con = $conexion->conn();
@@ -33,6 +34,16 @@ class Almacenes{
             return "Algo no funciono";
         }
 
+    }
+
+    public function list(){
+        $conectar = new Kon();
+        $con = $conectar->conn();
+
+        $query = "SELECT * from almacenes order by id desc ";
+        $exc_query = mysqli_query($con, $query);
+
+       return $exc_query;
     }
 }
 ?>
