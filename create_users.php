@@ -14,7 +14,7 @@
     <div class="alert alert-danger" role="alert">
       <h4 class="alert-heading">Error de creacion!</h4>
       <p>Recuerda los nombres de usuarios no pueden repetirse<hr>
-      <p class="mb-0">Si el usuario no existe y el error persiste escriba a su suplidor</p>
+      <p class="mb-0">Si el usuario no existe y el error persiste escriba a su administrador</p>
     </div>
 
 <?php

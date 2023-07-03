@@ -52,24 +52,28 @@ class Rules{
         $conectar = new Kon();
         $con = $conectar->conn();
 
-        $query = "SELECT id, description from rol order by id desc ";
+        $query = "SELECT id, description from rol where id <> 1 and delete_date is null order by id desc ";
         $exc_query = mysqli_query($con, $query);
 
        return $exc_query;
     }
 
-    public function update($id, $roles, $crear_rol, $editar_rol, $eliminar_rol, $usuarios, $crear_usuarios, $editar_usuarios, $eliminar_usuarios){
+    public function update($descrition, $id, $roles, $crear_rol, $editar_rol, $eliminar_rol, $usuarios, $crear_usuarios, $editar_usuarios, $eliminar_usuarios){
         include("kon.php");
         $conectar = new Kon();
         $con = $conectar->conn();
-
-        $query = "UPDATE rolpermisos set 
+        
+        $query_rol = "UPDATE rol set description = '$descrition' where id = $id";
+        $query_permisos = "UPDATE rolpermisos set 
         Modulo_Roles = $roles, Crear_Modulo_Roles =  $crear_rol, Editar_Modulo_Roles = $editar_rol, Eliminar_Modulo_Roles = $eliminar_rol,
         Modulo_Usuarios = $usuarios, Crear_Modulo_Usuarios =  $crear_usuarios, Editar_Modulo_Usuarios = $editar_usuarios, Eliminar_Modulo_Usuarios = $eliminar_usuarios
         where id_rol = $id";
+
         $Insert_result = false;
+
         try {
-            $exc_query = mysqli_query($con, $query);
+            $exc_query = mysqli_query($con, $query_permisos);
+            $exc_query = mysqli_query($con, $query_rol);
             $Insert_result = true;
         } catch (\Throwable $th) {
             $Insert_result = false;
@@ -78,7 +82,6 @@ class Rules{
         return $Insert_result;
     }
 
-    
     public function find($id){
         $conectar = new Kon();
         $con = $conectar->conn();
@@ -99,6 +102,32 @@ class Rules{
         $Rules = mysqli_fetch_assoc($exc_query);
                         
        return $Rules;
+    }
+
+    public function delete($id, $id_username){
+        include("kon.php");
+
+        $conexion = new Kon();
+        $con = $conexion->conn();
+
+        $query_usuarios_vinculados = "SELECT count(*) as Num FROM usuarios WHERE id_rol = $id and delete_date is null";  
+        
+        $exc_query_find_user = $con->query($query_usuarios_vinculados);
+
+        $count_db = mysqli_fetch_assoc($exc_query_find_user);
+
+        $count = $count_db["Num"];
+
+        if($count == 0){
+            $delete_date = date("Y-m-d :His");
+            $query_delete = "UPDATE rol set delete_date = '$delete_date', delete_by = '$id_username' where id = $id";
+            $exc_query_delete = $con->query($query_delete);
+             return "1";
+        }else{
+            return "0";
+        }
+
+       
     }
 }
 

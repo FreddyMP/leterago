@@ -40,7 +40,7 @@
                     Crear usuarios
                     <select class="form-control" name="crear_usuarios" id="">
                     <?php
-                            if($rol_permisos["Crear_Modulo_Roles"]== '1')
+                            if($rol_permisos["Crear_Modulo_Usuarios"]== '1')
                             {
                                 ?>
                                     <option value="1">Si</option>

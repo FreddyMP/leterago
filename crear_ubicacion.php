@@ -6,7 +6,7 @@
 
     <h3>Crear ubicacion</h3>
     <div class="formularios">
-        <form action="controllers/create_almacen.php" method="post">
+        <form action="controllers/create_ubicaciones.php" method="post">
             <div class="row">
                 <div class="col-md-4 mt-3">
                     

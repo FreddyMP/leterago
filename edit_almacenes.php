@@ -1,16 +1,17 @@
 <?php
     include("plantilla/menu_top.php"); 
+    include("model/almacenes.php");
+
+    $id = $_GET["id"];
+    $Almacenes_instance = new Almacenes();
+
+    $almacenes = $Almacenes_instance->find($id);
+
 ?>
 <link rel="stylesheet" href="css/form.css">
 <div class="Container"><br>
 <?php
-    $id = $_GET["id"];
-    $cone_almacenes = $con->conectar();
-    $query = "SELECT * from almacenes where id= $id";
-    $exc_Almacenes = mysqli_query($cone_almacenes, $query);
-
-    $almacenes = mysqli_fetch_assoc($exc_Almacenes);
-    if(isset($_GET["error_create"])){
+    if(isset($_GET["error_borrado"])){
   ?>
     <div class="alert alert-danger" role="alert">
       <h4 class="alert-heading">Error de creacion!</h4>

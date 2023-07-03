@@ -1,21 +1,22 @@
 <?php
     include("../model/rules.php");
 
-     $rol = new Rules();
+    $rol = new Rules();
 
-    echo $roles = $_POST["roles"];
-    echo $id_rol = $_POST["id"];
-    echo  $crear_rol = $_POST["crear_roles"];
-    echo  $editar_rol = $_POST["editar_roles"];
-    echo  $eliminar_rol = $_POST["eliminar_roles"];
+    $roles = $_POST["roles"];
+    $id_rol = $_POST["id"];
+    $crear_rol = $_POST["crear_roles"];
+    $editar_rol = $_POST["editar_roles"];
+    $eliminar_rol = $_POST["eliminar_roles"];
 
+    $usuarios = $_POST["usuarios"];
+    $crear_usuarios = $_POST["crear_usuarios"];
+    $editar_usuarios = $_POST["editar_usuarios"];
+    $eliminar_usuarios = $_POST["eliminar_usuarios"];
 
-    echo $usuarios = $_POST["usuarios"];
-    echo  $crear_usuarios = $_POST["crear_usuarios"];
-    echo  $editar_usuarios = $_POST["editar_usuarios"];
-    echo  $eliminar_usuarios = $_POST["eliminar_usuarios"];
+    $description = $_POST["descripcion"];
 
-    $rol->update($id_rol, $roles, $crear_rol, $editar_rol, $eliminar_rol, $usuarios, $crear_usuarios, $editar_usuarios, $eliminar_usuarios);
+    $rol->update($description, $id_rol, $roles, $crear_rol, $editar_rol, $eliminar_rol, $usuarios, $crear_usuarios, $editar_usuarios, $eliminar_usuarios);
 
     header("location:../list_roles.php");
 ?>
