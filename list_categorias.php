@@ -16,7 +16,6 @@
       <p>No puede eliminar roles que esten vinculados a usuarios<hr>
       <p class="mb-0">Si el usuario no existe y el error persiste escriba a su suplidor</p>
     </div>
-
 <?php
     }
 ?>

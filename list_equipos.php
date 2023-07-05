@@ -31,7 +31,7 @@
       <td><?php echo $equipos["marca"]?></td>
       <td><?php echo $equipos["modelo"]?></td>
       <td>
-            <a href="edit_usuario.php?id="><button class="btn btn-warning"> <small>Editar</small></button></a>
+            <a href="edit_equipo.php?id=<?php echo $equipos["id"] ?>"><button class="btn btn-warning"> <small>Editar</small></button></a>
             <button class="btn btn-danger"><small>Eliminar</small></button>
       </td>
     </tr>

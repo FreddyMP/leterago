@@ -60,9 +60,9 @@ if(isset($_SESSION["usuario_Log_Username"])){
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="crear_equipo.php">Crear equipos</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Actividades</a>
+          <a class="dropdown-item" href="list_actividades.php">Actividades</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Crear actividades</a>
+          <a class="dropdown-item" href="crear_actividades.php">Crear actividades</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
