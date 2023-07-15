@@ -17,8 +17,9 @@ include("../model/equipos.php");
  $frecuencia = $_POST["frecuencia"];
  $orden = 0;
  if(isset($_POST["orden"])){
-    $orden = $_POST["orden"];
+    $orden = 1;
  }
+ echo $orden;
  $observaciones = $_POST["observaciones"];
 
  $equipo = $equipos_instance->create($id_user, $codigo, $description, $orden, $categoria, $marca, $modelo, $serie, $estado, $observaciones,

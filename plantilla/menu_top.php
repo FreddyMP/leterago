@@ -3,6 +3,7 @@
 <script src="js/jquery-3.2.1.slim.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js" ></script>
+<script src="js/jquery.js" ></script>
 <?php
 session_start();
 if(isset($_SESSION["usuario_Log_Username"])){
@@ -73,6 +74,7 @@ if(isset($_SESSION["usuario_Log_Username"])){
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="list_categorias.php">Categorias</a>
+          <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="crear_categorias.php">Crear categorias</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
@@ -115,16 +117,19 @@ if(isset($_SESSION["usuario_Log_Username"])){
            if($permisos["Modulo_Usuarios"] == 1){
             ?>
               <a class="dropdown-item" href="list_usuarios.php">Usuarios</a>
+              <div class="dropdown-divider"></div>
           <?php
            }
            if($permisos["Crear_Modulo_Usuarios"] == 1){
             ?>
           <a class="dropdown-item" href="create_users.php">Crear usuario</a>
+          <div class="dropdown-divider"></div>
           <?php
            }
            if($permisos["Crear_Modulo_Roles"] == 1){
             ?>
           <a class="dropdown-item" href="create_roles.php">Crear rol</a>
+          <div class="dropdown-divider"></div>
           <?php
            }
            if($permisos["Modulo_Roles"] == 1){

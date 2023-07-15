@@ -1,5 +1,8 @@
 <?php
 include("plantilla/menu_top.php");
+include("model/ordenes.php");
+$Ordenes_instance = new Ordenes();
+$ordenes = $Ordenes_instance->list();
 ?>
 
 <link rel="stylesheet" href="css/form.css">
@@ -31,27 +34,22 @@ include("plantilla/menu_top.php");
     </tr>
   </thead>
   <tbody>
-
+    <?php
+      while($row = mysqli_fetch_assoc($ordenes)){
+    ?>
     <tr>
-      <th scope="row">OT-ALM-039-2023</th>
-      <td>Wellignton Cuevas</td>
-      <td>Distribucion</td>
-      <td>10/09/2023</td>
+      <th scope="row"><?php echo $row["orderNum"] ?></th>
+      <td><?php echo $row["solicitadoPor"] ?></td>
+      <td><?php echo $row["departamento"] ?></td>
+      <td><?php echo $row["fecha"] ?></td>
       <td>
-            <a href="ver_programa.php"><button class="btn btn-warning">Editar</button></a>
+            <a href="edit_orden.php?id=<?php echo $row["id"] ?>"><button class="btn btn-warning">Editar</button></a>
             <button class="btn btn-info">Exportar</button>
       </td>
     </tr>
-    <tr>
-      <th scope="row">OT-INGO-039-2023</th>
-      <td>Rafael Alcantara</td>
-      <td>Calidad</td>
-      <td>03/05/2023</td>
-      <td>
-            <a href=""><button class="btn btn-warning">Editar</button></a>
-            <button class="btn btn-info">Exportar</button>
-      </td>
-    </tr>
+    <?php
+      }
+    ?>
   </tbody>
 </table>
     </div>

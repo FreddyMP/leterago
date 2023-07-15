@@ -1,5 +1,11 @@
 <?php
 include("plantilla/menu_top.php");
+include('model/mantenimiento.php');
+
+$mantenimientos_instance = new Mantenimiento();
+
+$mantenimientos = $mantenimientos_instance->list();
+
 ?>
 
 <link rel="stylesheet" href="css/form.css">
@@ -34,27 +40,22 @@ include("plantilla/menu_top.php");
     </tr>
   </thead>
   <tbody>
-
+    <?php
+      while ($row = mysqli_fetch_assoc($mantenimientos)) {
+    ?>
     <tr>
-      <th scope="row">FOR-106</th>
-      <td>Manejadora de agua helada</td>
-      <td>Produccion</td>
-      <td>20/10/2023</td>
+      <th scope="row"><?php echo $row["documento"] ?></th>
+      <td><?php echo $row["description"] ?></td>
+      <td><?php echo $row["relacionado"] ?></td>
+      <td><?php echo $row["fecha"] ?></td>
       <td>
             <a href="ver_programa.php"><button class="btn btn-warning">Editar</button></a>
             <button class="btn btn-info">Exportar</button>
       </td>
     </tr>
-    <tr>
-      <th scope="row">FOR-136</th>
-      <td>Bomba Dispensadora de combustible</td>
-      <td>Devoluciones</td>
-      <td>04/10/2023</td>
-      <td>
-            <a href="ver_programa.php"><button class="btn btn-warning">Editar</button></a>
-            <button class="btn btn-info">Exportar</button>
-      </td>
-    </tr>
+    <?php
+      }
+    ?>
   </tbody>
 </table>
     </div>
