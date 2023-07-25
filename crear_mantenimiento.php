@@ -20,21 +20,31 @@
         <form action="controllers/create_mantenimiento.php" method="post">
             <div class="row">
                 <div class="col-md-6 mt-3">
+                  Doc. No
                     <input class="form-control" name="documento_no" type="text" placeholder="Documento No." required>
                 </div>
                 <div class="col-md-6 mt-3">
+                  Version
                     <input class="form-control" name="version" type="text" placeholder="Version" required>
                 </div>
                 <div class="col-md-6 mt-3">
+                  Documento relacionado
                     <input class="form-control" name="doc_relacionado" type="text" placeholder="Doc. relacionado" required>
                 </div>
                 <div class="col-md-6 mt-3">
+                  Codigo
                     <input class="form-control" name="codigo" type="text" placeholder="Codigo" required>
                 </div>
                 <div class="col-md-6 mt-3">
+                  Fecha de planificacion
                     <input class="form-control" name="fecha" type="date">
                 </div>
                 <div class="col-md-6 mt-3">
+                  Fecha realizado
+                    <input class="form-control" name="fecha" type="date">
+                </div>
+                <div class="col-md-12 mt-3">
+                  Ubicacion
                     <select class="form-control" name="ubicacion" id="">
                         <?php
                           while($ubicacion= mysqli_fetch_assoc($ubicaciones_list)){

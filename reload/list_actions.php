@@ -4,8 +4,6 @@
 
                 $id_equipo = $_POST["id_equipo"];
 
-                echo $id_equipo;
-
                 $equipo_actividad = $equipo_actividad_instance->list_actividades_assig($id_equipo);
                    
                 ?>

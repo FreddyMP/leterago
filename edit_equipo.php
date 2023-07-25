@@ -212,8 +212,9 @@
                     <textarea name="observaciones" class="form-control" placeholder="Observaciones" id="" cols="30" rows="10"><?php echo $equipos["observaciones"] ?></textarea>
                 </div>
             </div>
-            <input class="btn btn-info col-md-4 mt-3" type="submit" value="Guardar">
-            <a href="add_actividades.php?id=<?php echo $id ?>" class="btn btn-success col-md-4 text-light mt-3">Agregar actividades</a>
+            <input class="btn btn-info col-md-3 mt-3" type="submit" value="Guardar">
+            <a href="add_actividades.php?id=<?php echo $id ?>" class="btn btn-primary col-md-3 text-light mt-3">Agregar actividades</a>
+            <a href="list_mantenimientos_equipo.php?id=<?php echo $id ?>" class="btn btn-success col-md-3 text-light mt-3">Reportes</a>
         </form>
     </div>
 </div>

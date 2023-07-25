@@ -4,6 +4,8 @@
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js" ></script>
 <script src="js/jquery.js" ></script>
+<link rel="stylesheet" href="css/all.css">
+
 <?php
 session_start();
 if(isset($_SESSION["usuario_Log_Username"])){
@@ -31,9 +33,7 @@ if(isset($_SESSION["usuario_Log_Username"])){
            <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="crear_programas.php">Crear programa</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="crear_programas.php">Calendario</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="list_calendario.php">Calendario</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -43,13 +43,12 @@ if(isset($_SESSION["usuario_Log_Username"])){
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="list_mantenimientos.php">Reportes de mantenimiento</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="crear_mantenimiento.php">Crear mantenimiento</a>
-          <div class="dropdown-divider"></div>
+         <!-- <a class="dropdown-item" href="crear_mantenimiento.php">Crear mantenimiento</a>
+          <div class="dropdown-divider"></div> -->
           <a class="dropdown-item" href="list_ordenes.php">Ordenes</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="crear_ordenes.php">Crear Ordenes</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -64,8 +63,7 @@ if(isset($_SESSION["usuario_Log_Username"])){
           <a class="dropdown-item" href="list_actividades.php">Actividades</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="crear_actividades.php">Crear actividades</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -76,8 +74,6 @@ if(isset($_SESSION["usuario_Log_Username"])){
           <a class="dropdown-item" href="list_categorias.php">Categorias</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="crear_categorias.php">Crear categorias</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -139,20 +135,40 @@ if(isset($_SESSION["usuario_Log_Username"])){
            }
           ?>
          
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
       <?php }?>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <ul class="navbar-nav mr-2 float-right">
+    <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle bg-danger notificaciones" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          10
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+     
+          <a class="dropdown-item" href="list_tareas.php">
+            <span class="bg-info notificaciones ml-2 text-light p-1">3</span>
+            Para hoy
+          </a>
       
+         
+          <a class="dropdown-item" href="list_tareas.php">
+          <span class="bg-warning notificaciones ml-2 text-light p-1">6</span>
+          Proximos</a>
+     
+          <a class="dropdown-item" href="list_tareas.php">
+          <span class="bg-danger notificaciones ml-2 text-light p-1">1</span>
+          En atraso</a>
+
+        </div>
+      </li>
+      </ul>
+       <img src="imagen/bell.png" width="25" srcset="">
        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
          <?php
          echo $_SESSION["usuario_Log_Username"];
          ?> <a href="controllers/logout.php">Salir</a>
         </a>
-    </form>
   </div>
 </nav>
 

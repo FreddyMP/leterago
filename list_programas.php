@@ -1,5 +1,9 @@
 <?php
 include("plantilla/menu_top.php");
+include("model/programas.php");
+$programa_instance = new Programas();
+
+$programa_exc = $programa_instance->list_header();
 ?>
 
 <link rel="stylesheet" href="css/form.css">
@@ -17,25 +21,22 @@ include("plantilla/menu_top.php");
     </tr>
   </thead>
   <tbody>
-
+    <?php
+      while($row = mysqli_fetch_assoc($programa_exc)){
+    ?>
     <tr>
-      <th scope="row">RPG-005</th>
-      <td>PROGRAMACION DE MANTENIMIENTO DE INSTALACION Y EQUIPOS 2023</td>
-      <td>10</td>
+      <th scope="row"><?php echo $row["doc_no"] ?></th>
+      <td><?php echo $row["descripcion"] ?></td>
+      <td><?php echo $row["version"] ?></td>
       <td>
-            <a href="ver_programa.php"><button class="btn btn-warning">Editar</button></a>
-            <button class="btn btn-info">Exportar</button>
+          <a href="list_tareas.php"><button class="btn btn-success mb-2">Tareas</button></a>
+          <a href="ver_programa.php?id=<?php echo $row["id"] ?>"><button class="btn btn-warning mb-2">Editar</button></a>
+          <button class="btn btn-info mb-2">Exportar</button>
       </td>
     </tr>
-    <tr>
-      <th scope="row">RPG-002</th>
-      <td>PROGRAMACION DE MANTENIMIENTO DE INSTALACION Y EQUIPOS 2024</td>
-      <td>5</td>
-      <td>
-            <a href=""><button class="btn btn-warning">Editar</button></a>
-            <button class="btn btn-info">Exportar</button>
-      </td>
-    </tr>
+    <?php
+      }
+    ?>
   </tbody>
 </table>
     </div>
