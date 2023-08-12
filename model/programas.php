@@ -22,7 +22,7 @@
             $conexion = new Kon();
             $con = $conexion->conn();
 
-            $query = "SELECT * FROM programaheader where delete_date is null";
+            $query = "SELECT * FROM programaheader where delete_date is null order by id desc";
 
             $exc = $con->query($query);
             return $exc;

@@ -32,3 +32,14 @@ body{
 .notificaciones{
    border-radius: 10px;
 }
+
+#grafico{
+    height: 400px;
+    margin-left: 10%;
+}
+.informacion_dash{
+    background-color: white;
+    padding: 13px;
+    color: gray;
+    font-style: oblique;
+}

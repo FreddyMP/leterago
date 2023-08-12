@@ -29,8 +29,17 @@ $programa_exc = $programa_instance->list_header();
       <td><?php echo $row["descripcion"] ?></td>
       <td><?php echo $row["version"] ?></td>
       <td>
-          <a href="list_tareas.php"><button class="btn btn-success mb-2">Tareas</button></a>
+        
+        <?php 
+          $estado = $row["estado"];
+          $id = $row["id"];
+          if($estado != 0){
+        ?>
+          <a href="list_tareas.php?programa=<?php echo $id ?>"><button class="btn btn-success mb-2">Tareas</button></a>
           <a href="ver_programa.php?id=<?php echo $row["id"] ?>"><button class="btn btn-warning mb-2">Editar</button></a>
+          <?php
+          }
+          ?>
           <button class="btn btn-info mb-2">Exportar</button>
       </td>
     </tr>

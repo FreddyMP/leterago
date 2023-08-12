@@ -22,7 +22,6 @@
       <th scope="col">Codigo</th>
       <th scope="col">Nombre</th>
       <th scope="col">Marca</th>
-      <th scope="col">Modelo</th>
       <th scope="col">Frecuencia</th>
       <th scope="col">Action</th>
     </tr>
@@ -36,7 +35,6 @@
       <th scope="row"><?php echo $equipos["codigo"] ?></th>
       <td><?php echo $equipos["description"]?></td>
       <td><?php echo $equipos["marca"]?></td>
-      <td><?php echo $equipos["modelo"]?></td>
       <td><?php 
                 if($equipos["frecuencia"] == '1'){
                     echo 'Mensual';
@@ -66,44 +64,10 @@
                 ?>
                         
       <td>
-            <button class="btn btn-info" data-toggle="modal" data-target="#exampleModalLong<?php echo $equipos["id"]?>"><small>Asignar fechas</small></button>
+            <a class="btn btn-info" href="asignar_fechas.php?id=<?php echo $equipos["id"] ?>&&cantidad=<?php echo $numero_de_mantenimientos ?>"><small>Asignar fechas</small></a>
       </td>
     </tr>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalLong<?php echo $equipos["id"]?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Calendario</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form action="controllers/add_calendar.php" method="post">
-      <div class="modal-body">
-        <p>Asignar fechas </p>
-        
-        <?php
-        $fechas_list = 1;
-            while($fechas_list <= $numero_de_mantenimientos){
-                ?>
-                    <input type="hidden" value="<?php echo  $programas["id"] ?> " name="id_programa">
-                    <input type="hidden" value="<?php echo $equipos["id"]?>" name="id_equipo">
-                    <input type="hidden" value="<?php echo $numero_de_mantenimientos ?>" name="total">
-                    <input type="date" class="form-control mb-3 fecha" min = "<?php echo $programas["fecha_ini"] ?>" max="<?php echo $programas["fecha_fin"] ?>" name="f<?php echo $fechas_list ?>" id="fecha">
-                <?php
-                $fechas_list++;
-            }
-        ?>
-      </div>
-      <div class="modal-footer">
-        <input type="submit" class="btn btn-primary" value="Guardar">
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
     <?php
       }
     ?>
@@ -112,6 +76,4 @@
         </table>
     </div>
 </div>
-<script>
 
-</script>
