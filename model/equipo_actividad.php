@@ -36,7 +36,6 @@ class Equipo_actividad{
     }
 
     public function list_actividades_assig($id_equipo){
-        include("kon.php");
         $conexion = new Kon();
         $con = $conexion->conn();
 

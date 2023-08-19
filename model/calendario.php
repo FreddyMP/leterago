@@ -60,19 +60,18 @@
             return $exc;
         }
 
-        public function edit($equipo, $fechas_news, $fechas_olds, $cantidad){
+        public function edit($fechas_news, $id){
             include_once("kon.php");
             $conexion = new Kon();
             $con = $conexion->conn();
 
             try {
-                $fecha_anterior = $fechas_olds;
+                $fecha_id = $id;
                 $fecha_actualizada = $fechas_news;
 
                 $query = "UPDATE fechas_ejecucion 
                               SET fecha = '$fecha_actualizada'
-                              where equipo = $equipo 
-                              and fecha = '$fecha_anterior'";
+                              where id = '$fecha_id'";
     
                 $exc = $con->query($query);
 
@@ -105,15 +104,59 @@
             $conexion = new Kon();
             $con = $conexion->conn();
 
-            $query = "SELECT equipos.codigo as codigo, equipo.description as descricion,
-                      fechas_ejecucion.fecha, as fecha
-                      FROM fechas_ejecucion 
+            $query = "SELECT fechas_ejecucion.id as id, equipos.id as equipo, equipos.codigo as codigo, equipos.description as descripcion,
+                      fechas_ejecucion.fecha as fecha
+                      FROM fechas_ejecucion
                       inner join equipos on equipos.id = fechas_ejecucion.equipo
-                        ";
+                      where realizado = 0
+                      order by fechas_ejecucion.fecha asc
+                      ";
 
-            $exc = $con->query($query);
+                try {
+                    $exc = $con->query($query);
+                } catch (\Throwable $th) {
+                    echo $th;
+                }
+            
 
             return $exc;
         }
+
+        public function find_ejecucion($id){
+            $conexion = new Kon();
+            $con = $conexion->conn();
+
+            $query = "SELECT * FROM fechas_ejecucion where id = $id";
+
+                try {
+                    $exc = $con->query($query);
+
+                    $fecha = mysqli_fetch_assoc($exc);
+
+                    return $fecha;
+
+                } catch (\Throwable $th) {
+                    return '0';
+                }
+            
+        }
+
+        public function realizado($id){
+            $conexion = new Kon();
+            $con = $conexion->conn();
+
+            $query = "UPDATE fechas_ejecucion SET realizado = '1' where id = $id";
+
+            $exc = $con->query($query);
+
+            try {
+                $exc = $con->query($query);
+                return 1;
+            } catch (\Throwable $th) {
+                return 0;
+            }
+
+        }
+        
     }
 ?>

@@ -4,7 +4,6 @@
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js" ></script>
 <script src="js/jquery.js" ></script>
-<link rel="stylesheet" href="css/all.css">
 
 <?php
 session_start();

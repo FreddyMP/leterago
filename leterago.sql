@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-08-2023 a las 04:58:53
+-- Tiempo de generación: 19-08-2023 a las 04:26:17
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -311,6 +311,44 @@ INSERT INTO `equipos_actividad` (`id`, `id_actividad`, `id_equipo`, `create_by`,
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `fechas_ejecucion`
+--
+
+CREATE TABLE `fechas_ejecucion` (
+  `id` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `equipo` int(10) NOT NULL,
+  `realizado` int(1) DEFAULT 0,
+  `create_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `create_by` varchar(50) NOT NULL,
+  `modify_date` datetime DEFAULT NULL,
+  `modify_by` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `fechas_ejecucion`
+--
+
+INSERT INTO `fechas_ejecucion` (`id`, `fecha`, `equipo`, `realizado`, `create_date`, `create_by`, `modify_date`, `modify_by`) VALUES
+(157, '2023-08-02', 101, 0, '2023-08-09 20:42:47', '1', NULL, NULL),
+(158, '2023-08-17', 101, 0, '2023-08-09 20:42:47', '1', NULL, NULL),
+(159, '2023-08-19', 101, 0, '2023-08-09 20:42:47', '1', NULL, NULL),
+(160, '2023-07-14', 104, 0, '2023-08-13 13:20:00', '1', NULL, NULL),
+(161, '2023-08-13', 104, 0, '2023-08-13 13:20:00', '1', NULL, NULL),
+(162, '2023-09-21', 104, 0, '2023-08-13 13:20:00', '1', NULL, NULL),
+(163, '2023-10-11', 104, 0, '2023-08-13 13:20:00', '1', NULL, NULL),
+(164, '2023-10-17', 104, 0, '2023-08-13 13:20:00', '1', NULL, NULL),
+(165, '2023-11-26', 104, 0, '2023-08-13 13:20:00', '1', NULL, NULL),
+(166, '2023-12-08', 104, 0, '2023-08-13 13:20:00', '1', NULL, NULL),
+(167, '2023-08-31', 104, 0, '2023-08-13 13:20:00', '1', NULL, NULL),
+(168, '2023-06-07', 104, 1, '2023-08-13 13:20:00', '1', NULL, NULL),
+(169, '2023-10-15', 104, 0, '2023-08-13 13:20:00', '1', NULL, NULL),
+(170, '2023-08-21', 104, 0, '2023-08-13 13:20:00', '1', NULL, NULL),
+(171, '2023-12-04', 104, 0, '2023-08-13 13:20:00', '1', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `frecuencia`
 --
 
@@ -341,16 +379,17 @@ CREATE TABLE `mantenimientos` (
   `ubicacion` int(6) NOT NULL,
   `equipo` int(6) NOT NULL,
   `observaciones` text DEFAULT NULL,
-  `codigo_temp` varchar(10) DEFAULT NULL
+  `razon_tardanza` text DEFAULT NULL,
+  `codigo_temp` varchar(10) DEFAULT NULL,
+  `create_by` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `mantenimientos`
 --
 
-INSERT INTO `mantenimientos` (`id`, `documento_no`, `version`, `documento_relacionado`, `codigo`, `fecha`, `ubicacion`, `equipo`, `observaciones`, `codigo_temp`) VALUES
-(27, '0012', '3', 'FOR-11', 'YHPVQL9', '2023-07-14 00:00:00', 2, 100, '', NULL),
-(28, '0013', '3', 'FOR-12', 'HUUB1', '2023-07-14 00:00:00', 2, 104, '', NULL);
+INSERT INTO `mantenimientos` (`id`, `documento_no`, `version`, `documento_relacionado`, `codigo`, `fecha`, `ubicacion`, `equipo`, `observaciones`, `razon_tardanza`, `codigo_temp`, `create_by`) VALUES
+(30, '0012', '1', 'FOR-12', 'YH', '2023-08-19 00:00:00', 2, 104, 'Ninguna observacion general', 'Esto es probando', NULL, '1');
 
 -- --------------------------------------------------------
 
@@ -372,10 +411,8 @@ CREATE TABLE `mantenimientos_details` (
 --
 
 INSERT INTO `mantenimientos_details` (`id`, `id_mantenimiento`, `ok`, `no_aplica`, `r`, `observacion`) VALUES
-(1, 27, 1, 0, 0, 'Realizado'),
-(2, 27, 0, 1, 0, 'estaba bien'),
-(3, 28, 1, 0, 0, ''),
-(4, 28, 0, 1, 0, '');
+(7, 30, 1, 0, 0, 'Ninguna observacion'),
+(8, 30, 0, 1, 0, 'Ninguna observacion');
 
 -- --------------------------------------------------------
 
@@ -514,13 +551,13 @@ CREATE TABLE `programaheader` (
 --
 
 INSERT INTO `programaheader` (`id`, `doc_no`, `doc_relacionado`, `fecha_ini`, `fecha_fin`, `descripcion`, `version`, `estado`, `temp`, `create_date`, `create_by`, `modify_date`, `modify_by`, `delete_date`, `delete_by`) VALUES
-(6, 'RPG-23', 'FOR-13', '2023-01-03', '2023-01-01', 'PROGRAMACION DE MANTENIMIENTO DE INSTALACION Y EQUIPOS 2021', 3, NULL, NULL, '2023-07-17 21:01:37', '1', '2023-07-20 00:00:00', '1', NULL, NULL),
-(7, 'RPG-22', 'FOR-11', '2023-01-01', '2023-01-01', 'PROGRAMACION DE MANTENIMIENTO DE INSTALACION Y EQUIPOS 2024', 1, NULL, NULL, '2023-07-17 21:06:58', '1', '2023-07-20 00:00:00', '1', NULL, NULL),
-(8, 'RPG-22', 'FOR-11', '2023-01-01', '2023-01-01', 'PROGRAMACION DE MANTENIMIENTO DE INSTALACION Y EQUIPOS 2024', 1, NULL, NULL, '2023-07-19 22:14:45', '1', '2023-07-20 00:00:00', '1', NULL, NULL),
+(6, 'RPG-23', 'FOR-13', '2023-01-03', '2023-01-01', 'PROGRAMACION DE MANTENIMIENTO DE INSTALACION Y EQUIPOS 2021', 3, 0, NULL, '2023-07-17 21:01:37', '1', '2023-07-20 00:00:00', '1', NULL, NULL),
+(7, 'RPG-22', 'FOR-11', '2023-01-01', '2023-01-01', 'PROGRAMACION DE MANTENIMIENTO DE INSTALACION Y EQUIPOS 2024', 1, 0, NULL, '2023-07-17 21:06:58', '1', '2023-07-20 00:00:00', '1', NULL, NULL),
+(8, 'RPG-22', 'FOR-11', '2023-01-01', '2023-01-01', 'PROGRAMACION DE MANTENIMIENTO DE INSTALACION Y EQUIPOS 2024', 1, 0, NULL, '2023-07-19 22:14:45', '1', '2023-07-20 00:00:00', '1', NULL, NULL),
 (9, 'RPG-22', 'FOR-11', '2023-01-01', '2023-01-01', 'PROGRAMACION DE MANTENIMIENTO DE INSTALACION Y EQUIPOS 2024', 1, NULL, 73956, '2023-07-19 22:38:49', '1', '2023-07-20 00:00:00', '1', NULL, NULL),
-(10, 'RPG-22', 'FOR-11', '2023-01-01', '2023-01-01', 'PROGRAMACION DE MANTENIMIENTO DE INSTALACION Y EQUIPOS 2024', 1, NULL, 91193, '2023-07-19 23:39:49', '1', '2023-07-20 00:00:00', '1', NULL, NULL),
-(11, 'RPG-22', 'FOR-11', '2023-01-01', '2023-01-01', 'PROGRAMACION DE MANTENIMIENTO DE INSTALACION Y EQUIPOS 2024', 1, NULL, 70099, '2023-07-19 23:41:01', '1', '2023-07-20 00:00:00', '1', NULL, NULL),
-(12, 'RPG-22', 'FOR-11', '2023-01-01', '2023-01-01', 'PROGRAMACION DE MANTENIMIENTO DE INSTALACION Y EQUIPOS 2024', 1, NULL, 28313, '2023-07-19 23:41:30', '1', '2023-07-20 00:00:00', '1', NULL, NULL),
+(10, 'RPG-22', 'FOR-11', '2023-01-01', '2023-01-01', 'PROGRAMACION DE MANTENIMIENTO DE INSTALACION Y EQUIPOS 2024', 1, 0, 91193, '2023-07-19 23:39:49', '1', '2023-07-20 00:00:00', '1', NULL, NULL),
+(11, 'RPG-22', 'FOR-11', '2023-01-01', '2023-01-01', 'PROGRAMACION DE MANTENIMIENTO DE INSTALACION Y EQUIPOS 2024', 1, 0, 70099, '2023-07-19 23:41:01', '1', '2023-07-20 00:00:00', '1', NULL, NULL),
+(12, 'RPG-22', 'FOR-11', '2023-01-01', '2023-01-01', 'PROGRAMACION DE MANTENIMIENTO DE INSTALACION Y EQUIPOS 2024', 1, 0, 28313, '2023-07-19 23:41:30', '1', '2023-07-20 00:00:00', '1', NULL, NULL),
 (13, 'RPG-22', 'FOR-11', '2023-01-01', '2023-12-31', 'PROGRAMACION DE MANTENIMIENTO DE INSTALACION Y EQUIPOS 2024', 1, 1, 64108, '2023-07-19 23:42:32', '1', '2023-07-20 00:00:00', '1', NULL, NULL);
 
 -- --------------------------------------------------------
@@ -730,6 +767,12 @@ ALTER TABLE `equipos_actividad`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `fechas_ejecucion`
+--
+ALTER TABLE `fechas_ejecucion`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `frecuencia`
 --
 ALTER TABLE `frecuencia`
@@ -844,6 +887,12 @@ ALTER TABLE `equipos_actividad`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
+-- AUTO_INCREMENT de la tabla `fechas_ejecucion`
+--
+ALTER TABLE `fechas_ejecucion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=172;
+
+--
 -- AUTO_INCREMENT de la tabla `frecuencia`
 --
 ALTER TABLE `frecuencia`
@@ -853,13 +902,13 @@ ALTER TABLE `frecuencia`
 -- AUTO_INCREMENT de la tabla `mantenimientos`
 --
 ALTER TABLE `mantenimientos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `mantenimientos_details`
 --
 ALTER TABLE `mantenimientos_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `ordentrabajodetail`

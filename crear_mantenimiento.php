@@ -2,12 +2,26 @@
     include("plantilla/menu_top.php"); 
     include ('model/equipos.php');
     include('model/ubicaciones.php');
-
+    include ("model/equipo_actividad.php");
+    include ("model/calendario.php");
+                
+    $equipo_actividad_instance = new Equipo_actividad();
     $equipos_instance = new Equipos();
     $ubicaciones_instance = new Ubicaciones();
+    $calendario_instance = new Calendario();
 
-    $equipo_list = $equipos_instance->list();
+    $equipo_id = $_GET["id"];
+    $ejecucion = $_GET["ejecucion"];
+
+    $equipo_actividad = $equipo_actividad_instance->list_actividades_assig($equipo_id);
+   
+    $equipo_list = $equipos_instance->find($equipo_id);
     $ubicaciones_list = $ubicaciones_instance->list();
+
+    $fecha = $calendario_instance->find_ejecucion($ejecucion);
+    $hoy = date("Y-m-d");
+
+    $type = $_GET["type"];
 
 ?>
 <link rel="stylesheet" href="css/form.css">
@@ -33,15 +47,15 @@
                 </div>
                 <div class="col-md-6 mt-3">
                   Codigo
-                    <input class="form-control" name="codigo" type="text" placeholder="Codigo" required>
+                    <input class="form-control" value = "<?php echo $equipo_list["codigo"] ?>" readonly name="codigo" type="text" placeholder="Codigo" required>
                 </div>
                 <div class="col-md-6 mt-3">
                   Fecha de planificacion
-                    <input class="form-control" name="fecha" type="date">
+                    <input class="form-control" name="fecha" value="<?php echo  $fecha["fecha"]?>" readonly type="date">
                 </div>
                 <div class="col-md-6 mt-3">
                   Fecha realizado
-                    <input class="form-control" name="fecha" type="date">
+                    <input class="form-control" name="fecha" value="<?php echo $hoy ?>" readonly type="date">
                 </div>
                 <div class="col-md-12 mt-3">
                   Ubicacion
@@ -56,20 +70,57 @@
                     </select>
                 </div>
                 <div class="col-md-12 mt-3">
-                  <select class="form-control" name="equipo" id="equipos">
-                        <?php
-                          while($equipo= mysqli_fetch_assoc($equipo_list)){
-                        ?>
-                        <option value="<?php echo $equipo['id'] ?>"><?php echo $equipo['codigo']." ".$equipo['description'] ?></option>
-                        <?php
-                          }
-                        ?>
-                    </select>
+                Nombre del equipo
+                    <input class="form-control" readonly value = "<?php echo $equipo_list["description"] ?>"type="text">
+                    <input class="form-control" readonly value = "<?php echo $equipo_list["id"] ?>" name="equipo" type="hidden" required>
+                    <input class="form-control" readonly value = "<?php echo $ejecucion ?>" name="ejecucion" type="hidden" required>
                 </div>
+                <?php
+                  if($type ==1){
+                ?>
+                <div class="col-md-12 mt-3">
+                Razon de tardanza
+                          <textarea class="form-control" name="razon_tardanza" id="" cols="30" rows="3" required placeholder="Razones de la tardanza"></textarea>
+                </div>
+                <?php
+                     }
+                ?>
             </div>
 
                 <h3 class="mt-3 mb-3">Acciones</h3>
                 <div id = "tabla">
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Actividad</th>
+                        <th scope="col">  OK</th>
+                        <th scope="col">  N/A</th>
+                        <th scope="col">  R</th>
+                        <th scope="col">Observaciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                        $contador_checks = 0;
+                        while ($equipos = mysqli_fetch_assoc($equipo_actividad)) {
+                        
+                      ?>
+                      <tr>
+                        <th scope="row"><?php echo $equipos["description"] ?></th>
+                        <td><input  type="checkbox" name="ok<?php echo $contador_checks?>"  id=""></td>
+                        <td><input  type="checkbox" name="no_aplica<?php echo $contador_checks?>"  id=""></td>
+                        <td><input  type="checkbox" name="r<?php echo $contador_checks?>"  id=""></td>
+                        <td>
+                          <input class="form-control" type="text" name="observaciones<?php echo $contador_checks?>" id="">
+                        </td>
+                      </tr>
+                      <?php
+                        $contador_checks++;
+                        }
+                      ?>
+                      <input type="hidden" value="<?php echo $contador_checks -1 ?>" name="cantidad_ckecks">
+                    </tbody>
+                  </table>
 
                 </div>
                   <textarea name="observaciones" class="form-control" placeholder="Observaciones generales"></textarea>

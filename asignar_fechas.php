@@ -50,14 +50,13 @@
                 <div class="formularios">
                     <h3>Fechas asignadas</h3>
                     <form action="controllers/modificar_fecha_ejecucion.php" method="post">
-                        <input  value="<?php echo $equipo?>" type="hidden" name="equipo">
                             <?php
                                 $contador_inputs = 0;
                                 while($fechas_list = mysqli_fetch_assoc($lista_fechas)){
                             ?>
                             <div>
                                 <input class="form-control mb-3" value="<?php echo $fechas_list["fecha"]?>" min="<?php echo $fecha_ini ?>" max="<?php echo $fecha_fin ?>" type="date" name="input_val_new<?php echo $contador_inputs ?>" required>
-                                <input  value="<?php echo $fechas_list["fecha"]?>" type="hidden" name="input_val_old<?php echo $contador_inputs ?>">
+                                <input  value="<?php echo $fechas_list["id"]?>" type="hidden" name="input_val_old<?php echo $contador_inputs ?>">
                                 
 
 

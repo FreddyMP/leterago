@@ -1,7 +1,19 @@
 <?php
 include("../model/mantenimiento.php");
+include("../model/calendario.php");
 $mantenimiento_instance = new Mantenimiento();
+$calendario_instance = new Calendario();
 
+session_start();
+
+$id_user = $_SESSION["usuario_Log_Id"];
+
+$ejecucion = $_POST["ejecucion"];
+
+$razon_tardanza = '';
+if(isset($_POST["razon_tardanza"])){
+    $razon_tardanza = $_POST["razon_tardanza"];
+}
 $documento_no = $_POST["documento_no"];
 $version = $_POST["version"];
 $documento_relacionado = $_POST["doc_relacionado"];
@@ -12,7 +24,7 @@ $equipo = $_POST["equipo"];
 $observaciones = $_POST["observaciones"];
 
 $mantenimiento = $mantenimiento_instance->create($documento_no, $version, $documento_relacionado, $codigo,
- $fecha, $ubicacion, $equipo, $observaciones);
+ $fecha, $ubicacion, $equipo, $observaciones, $razon_tardanza, $id_user);
 
 /*En este codigo se llena los detalles de los mantenimientos digase las acciones realizadas.
 
@@ -63,15 +75,16 @@ El valor de mantenimiento es el codigo temporal en la tabla de mantenimientos.
 
         if($insert_details == '1'){
             $quitar_code_temp = $mantenimiento_instance->quitar_code_temp($mantenimiento);
+            $realizaro = $calendario_instance->realizado($ejecucion);
             header("location:../list_mantenimientos.php");
         }
         else{
-            header("location:../crear_mantenimiento.php?error_create=1"); 
+            #header("location:../crear_mantenimiento.php?error_create=1"); 
         }
         $contador++;
        }
     }
  }else{
-    header("location:../crear_mantenimiento.php?error_create=1");           
+    #header("location:../crear_mantenimiento.php?error_create=1");           
  }
 ?>
