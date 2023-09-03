@@ -10,6 +10,22 @@
     <br>
     <h3>Equipos</h3>
     <div class="formularios">
+    <div class="col-md-12 mb-4">
+        <div class="row">
+        <div class="col-md-2">
+            <input class="form-control" type="text" name="" placeholder="Codigo">
+          </div>
+          <div class="col-md-3">
+            <input class="form-control" type="text" name="" placeholder="Nombre">
+          </div>
+          <div class="col-md-2">
+            <input class="form-control" type="text" name="" placeholder="Marca">
+          </div>
+          <div class="col-md-2">
+            <input class="btn btn-success col-md-12 float-right" type="submit" name="" value="Buscar" placeholder="Buscar reporte">
+          </div>
+        </div>
+      </div>
     <table class="table table-striped">
   <thead>
     <tr>

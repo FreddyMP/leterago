@@ -1,7 +1,7 @@
 <?php
 class Mantenimiento{
 
-    public function create($documento_no, $version, $documento_relacionado, $codigo, $fecha, $ubicacion, $equipo, $observaciones = NULL, $razon_tardanza, $create_by){
+    public function create($documento_no, $version, $documento_relacionado, $codigo, $fecha, $fecha_planificacion, $ubicacion, $equipo, $observaciones = NULL, $razon_tardanza, $create_by){
         include("kon.php");
 
         $conexion = new Kon();
@@ -10,8 +10,8 @@ class Mantenimiento{
 
         $con = $conexion->conn();
 
-        $query = "INSERT INTO mantenimientos (`documento_no`, `version`, `documento_relacionado`, `codigo`, `fecha`, `ubicacion`, `equipo`, `observaciones`,`razon_tardanza`, `codigo_temp`,`create_by`)
-         VALUES ('$documento_no', '$version', '$documento_relacionado', '$codigo', '$fecha', $ubicacion, $equipo, '$observaciones','$razon_tardanza', '$codigo_temporal', '$create_by')";
+        $query = "INSERT INTO mantenimientos (`documento_no`, `version`, `documento_relacionado`, `codigo`, `fecha`, `date_planification`, `ubicacion`, `equipo`, `observaciones`,`razon_tardanza`, `codigo_temp`,`create_by`)
+         VALUES ('$documento_no', '$version', '$documento_relacionado', '$codigo', '$fecha', '$fecha_planificacion', $ubicacion, $equipo, '$observaciones','$razon_tardanza', '$codigo_temporal', '$create_by')";
 
         try {
             $con->query($query);
@@ -21,13 +21,13 @@ class Mantenimiento{
         }
     }
 
-    public function create_details($id_mantenimiento, $ok, $no_aplica, $r, $observaciones = NULL){
+    public function create_details($id_mantenimiento, $id_actividad, $ok, $no_aplica, $r, $observaciones = NULL){
 
         $conexion = new Kon();
         $con = $conexion->conn();
 
-        $query = "INSERT INTO mantenimientos_details (id_mantenimiento, ok, no_aplica, r, observacion)
-         VALUES ($id_mantenimiento, $ok, $no_aplica, $r, '$observaciones')";
+        $query = "INSERT INTO mantenimientos_details (id_mantenimiento, id_actividad, ok, no_aplica, r, observacion)
+         VALUES ($id_mantenimiento,$id_actividad, $ok, $no_aplica, $r, '$observaciones')";
 
         try {
             $con->query($query);
@@ -57,9 +57,6 @@ class Mantenimiento{
         $query = "UPDATE mantenimientos SET codigo_temp = NULL WHERE codigo_temp='$codigo_temporal'";
 
         $con->query($query);
-
-
-
     }
 
     public function edit($id){
@@ -77,7 +74,6 @@ class Mantenimiento{
     
     }
 
-
     public function list(){
     
         $conexion = new Kon();
@@ -85,13 +81,12 @@ class Mantenimiento{
 
         $query = "SELECT m.id as id, m.documento_no as documento, m.documento_relacionado as relacionado, e.description as description, m.fecha as fecha
         FROM mantenimientos m
-        INNER JOIN equipos  e on e.id = m.equipo";
+        INNER JOIN equipos  e on e.id = m.equipo ORDER BY m.id desc";
 
         $exc = $con->query($query);
 
         return $exc;
     }
-
 
     public function find($id){
         $conexion = new Kon();
@@ -104,6 +99,15 @@ class Mantenimiento{
         return $mantenimiento;
     }
 
+    public function find_details($id){
+        $conexion = new Kon();
+        $con = $conexion->conn();
+
+        $query = "SELECT * FROM mantenimientos_details where id_mantenimiento = $id";
+        $exc = $con->query($query);
+      
+        return $exc;
+    }
 
     public function delete(){
 

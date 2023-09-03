@@ -1,6 +1,6 @@
 <?php
 include("plantilla/menu_top.php");
-include("model/calendario.php");
+include_once("model/calendario.php");
 $calendario_instance = new Calendario();
 
 $programa = $_GET["programa"];
@@ -13,6 +13,25 @@ $calendarios = $calendario_instance->list_ejecuciones($programa);
     <br>
     <h3>Tareas pendientes</h3>
     <div class="formularios">
+    <div class = "filtros mb-4">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-4">
+                <input class="form-control" type="text" placeholder="Codigo" id="">
+              </div>
+              <div class="col-md-8">
+                <input class="form-control" type="text" placeholder="Equipo" id="">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="float-right">
+                <button class="btn btn-success pl-5 pr-5">Buscar equipo</button>
+            </div>
+          </div>
+        </div>
+      </div>
     <table class="table table-striped">
   <thead>
     <tr>

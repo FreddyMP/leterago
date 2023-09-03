@@ -157,6 +157,54 @@
             }
 
         }
+
+        public function contadores($estado){
+           
+            $conexion = new Kon();
+            $con = $conexion->conn();
+
+            $cantidad = null;
+
+            if($estado == '1'){
+
+                $hoy = date("Y-m-d");
+                $query = "SELECT COUNT(*) AS cantidad from fechas_ejecucion where fecha < '$hoy' and realizado = 0";
+
+                $exc = $con->query($query);
+
+                $cantidad_registros = mysqli_fetch_assoc($exc);
+                
+                $cantidad = $cantidad_registros["cantidad"];
+            }
+            if($estado == '2'){
+
+                $hoy = date("Y-m-d");
+                $query = "SELECT COUNT(*) AS cantidad from fechas_ejecucion where fecha = '$hoy' and realizado = 0";
+
+                $exc = $con->query($query);
+
+                $cantidad_registros = mysqli_fetch_assoc($exc);
+
+                $cantidad = $cantidad_registros["cantidad"];
+                
+            }
+            if($estado == '3'){
+
+                $hoy = date("Y-m-d");
+                $manana = date("Y-m-d", strtotime($hoy . "+1 day"));
+                $despues_tres_dias = date("Y-m-d", strtotime($hoy . "+3 day"));
+
+                $query = "SELECT COUNT(*) AS cantidad from fechas_ejecucion where fecha >= '$manana' and fecha <=  '$despues_tres_dias' and realizado = 0";
+
+                $exc = $con->query($query);
+
+                $cantidad_registros = mysqli_fetch_assoc($exc);
+
+                $cantidad = $cantidad_registros["cantidad"];
+            }
+            return $cantidad;
+
+        }
         
     }
 ?>

@@ -16,6 +16,28 @@
     <br>
     <h3>Asignacion de fechas</h3>
     <div class="formularios">
+    <div class = "filtros mb-4">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="row">
+              <div class="col-md-3">
+                <input class="form-control" type="text" placeholder="Codigo" id="">
+              </div>
+              <div class="col-md-5">
+                <input class="form-control" type="text" placeholder="Descripcion" id="">
+              </div>
+              <div class="col-md-4">
+                <input class="form-control" type="text" placeholder="Marca" id="">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="float-right">
+                <button class="btn btn-success pl-5 pr-5">Buscar equipo</button>
+            </div>
+          </div>
+        </div>
+      </div>
     <table class="table table-striped">
   <thead>
     <tr>

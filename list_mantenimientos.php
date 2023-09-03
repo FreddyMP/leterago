@@ -49,7 +49,7 @@ $mantenimientos = $mantenimientos_instance->list();
       <td><?php echo $row["relacionado"] ?></td>
       <td><?php echo $row["fecha"] ?></td>
       <td>
-            <a href="ver_programa.php?id_mantenimiento=<?php echo $row['id'] ?>"><button class="btn btn-warning">Editar</button></a>
+            <a href="ver_programa.php?id_mantenimiento=<?php echo $row['id'] ?>"><button class="btn btn-warning">Ver</button></a>
             <button class="btn btn-info">Exportar</button>
       </td>
     </tr>

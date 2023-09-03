@@ -11,6 +11,25 @@ $programa_exc = $programa_instance->list_header();
     <br>
     <h3>Programaciones</h3>
     <div class="formularios">
+      <div class = "filtros mb-4">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-4">
+                <input class="form-control" type="text" placeholder="Codigo" id="">
+              </div>
+              <div class="col-md-8">
+                <input class="form-control" type="text" placeholder="Descripcion" id="">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="float-right">
+                <button class="btn btn-success pl-5 pr-5">Buscar programacion</button>
+            </div>
+          </div>
+        </div>
+      </div>
     <table class="table table-striped">
   <thead>
     <tr>

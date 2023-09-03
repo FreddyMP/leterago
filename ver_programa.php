@@ -3,8 +3,10 @@
     include ('model/mantenimiento.php');
     include ('model/equipos.php');
     include ('model/ubicaciones.php');
+    include ('model/actividades.php');
 
     $mantenimiento_instance = new Mantenimiento();
+    $actividades_instance = new Actividades();
     $equipos_instance = new Equipos();
     $ubicaciones_instance = new Ubicaciones();
 
@@ -12,6 +14,8 @@
     $id_mantenimiento = $_GET["id_mantenimiento"];
 
     $mantenimiento = mysqli_fetch_assoc($mantenimiento_instance->edit($id_mantenimiento));
+
+    $mantenimiento_details = $mantenimiento_instance->find_details($id_mantenimiento);
 
     $id_equipo = $mantenimiento["equipo"];
 
@@ -35,15 +39,15 @@
             <div class="row">
                 <div class="col-md-6 mt-3">
                   Doc. No
-                    <input class="form-control" value = "<?php echo $mantenimiento["documento_no"] ?>" name="documento_no" type="text" placeholder="Documento No." required>
+                    <input class="form-control" readonly value = "<?php echo $mantenimiento["documento_no"] ?>" name="documento_no" type="text" placeholder="Documento No." required>
                 </div>
                 <div class="col-md-6 mt-3">
                   Version
-                    <input class="form-control"  value = "<?php echo $mantenimiento["version"] ?>"  name="version" type="text" placeholder="Version" required>
+                    <input class="form-control" readonly  value = "<?php echo $mantenimiento["version"] ?>"  name="version" type="text" placeholder="Version" required>
                 </div>
                 <div class="col-md-6 mt-3">
                   Documento relacionado
-                    <input class="form-control"  value = "<?php echo $mantenimiento["documento_relacionado"] ?>" name="doc_relacionado" type="text" placeholder="Doc. relacionado" required>
+                    <input class="form-control" readonly  value = "<?php echo $mantenimiento["documento_relacionado"] ?>" name="doc_relacionado" type="text" placeholder="Doc. relacionado" required>
                 </div>
                 <div class="col-md-6 mt-3">
                   Codigo
@@ -51,11 +55,11 @@
                 </div>
                 <div class="col-md-6 mt-3">
                   Fecha de planificacion
-                    <input class="form-control" name="fecha" value="<?php echo  $fecha["fecha"]?>" readonly type="date">
+                    <input class="form-control" name="fecha_planificacion" value="<?php echo  $mantenimiento["date_planification"]?>" readonly type="date">
                 </div>
                 <div class="col-md-6 mt-3">
                   Fecha realizado
-                    <input class="form-control" name="fecha" value="<?php echo $hoy ?>" readonly type="date">
+                    <input class="form-control" name="fecha" value="<?php echo $mantenimiento['fecha']?>" readonly type="date">
                 </div>
                 <div class="col-md-12 mt-3">
                   Ubicacion
@@ -68,11 +72,11 @@
                     <input class="form-control" readonly value = "<?php echo $ejecucion ?>" name="ejecucion" type="hidden" required>
                 </div>
                 <?php
-                  if($type ==1){
+                  if($mantenimiento["razon_tardanza"] != '' or $mantenimiento["razon_tardanza"] != null ){
                 ?>
                 <div class="col-md-12 mt-3">
                 Razon de tardanza
-                          <textarea class="form-control" name="razon_tardanza" id="" cols="30" rows="3" required placeholder="Razones de la tardanza"></textarea>
+                          <textarea class="form-control" readonly name="razon_tardanza" id="" cols="30" rows="3" required placeholder="Razones de la tardanza"><?php echo $mantenimiento['razon_tardanza']?></textarea>
                 </div>
                 <?php
                      }
@@ -94,29 +98,30 @@
                     <tbody>
                       <?php
                         $contador_checks = 0;
-                        while ($equipos = mysqli_fetch_assoc($equipo_actividad)) {
-                        
+                        while ($details = mysqli_fetch_assoc($mantenimiento_details)) {
+                          $id_actividad = $details["id_actividad"];
+                          $actividad = $actividades_instance->find($id_actividad);
                       ?>
                       <tr>
-                        <th scope="row"><?php echo $equipos["description"] ?></th>
-                        <td><input  type="checkbox" name="ok<?php echo $contador_checks?>"  id=""></td>
-                        <td><input  type="checkbox" name="no_aplica<?php echo $contador_checks?>"  id=""></td>
-                        <td><input  type="checkbox" name="r<?php echo $contador_checks?>"  id=""></td>
+                        <th scope="row"><?php echo $actividad["description"] ?></th>
+                        <td><input  type="checkbox" <?php if($details["ok"] == 1 ) {?>  checked <?php }?>></td>
+                        <td><input  type="checkbox" <?php if($details["no_aplica"] == 1 ) {?>  checked <?php }?>></td>
+                        <td><input  type="checkbox"  <?php if($details["r"] == 1 ) {?>  checked <?php }?>></td>
                         <td>
-                          <input class="form-control" type="text" name="observaciones<?php echo $contador_checks?>" id="">
+                          <input readonly  class="form-control" type="text" value="<?php echo $details["observacion"] ?>">
                         </td>
                       </tr>
                       <?php
                         $contador_checks++;
                         }
                       ?>
-                      <input type="hidden" value="<?php echo $contador_checks -1 ?>" name="cantidad_ckecks">
+                    
                     </tbody>
                   </table>
 
                 </div>
-                  <textarea name="observaciones" class="form-control" placeholder="Observaciones generales"></textarea>
-                  <input class="btn btn-info col-md-12 mt-3" type="submit" value="Guardar">
+                  <textarea readonly class="form-control" placeholder="Observaciones generales"><?php echo $mantenimiento["observaciones"] ?></textarea>
+                
               
             </form>
     </div>

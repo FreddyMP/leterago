@@ -51,7 +51,7 @@
                 </div>
                 <div class="col-md-6 mt-3">
                   Fecha de planificacion
-                    <input class="form-control" name="fecha" value="<?php echo  $fecha["fecha"]?>" readonly type="date">
+                    <input class="form-control" name="fecha_planificacion" value="<?php echo  $fecha["fecha"]?>" readonly type="date">
                 </div>
                 <div class="col-md-6 mt-3">
                   Fecha realizado
@@ -102,11 +102,12 @@
                     <tbody>
                       <?php
                         $contador_checks = 0;
-                        while ($equipos = mysqli_fetch_assoc($equipo_actividad)) {
+                        while ($Actividades = mysqli_fetch_assoc($equipo_actividad)) {
                         
                       ?>
                       <tr>
-                        <th scope="row"><?php echo $equipos["description"] ?></th>
+                        <th scope="row"><?php echo $Actividades["description"] ?></th>
+                        <input  type="hidden" value="<?php echo $Actividades["id"]?>" name="actividad<?php echo $contador_checks?>"  id=""></td>
                         <td><input  type="checkbox" name="ok<?php echo $contador_checks?>"  id=""></td>
                         <td><input  type="checkbox" name="no_aplica<?php echo $contador_checks?>"  id=""></td>
                         <td><input  type="checkbox" name="r<?php echo $contador_checks?>"  id=""></td>

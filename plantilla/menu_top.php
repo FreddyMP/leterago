@@ -9,9 +9,11 @@
 session_start();
 if(isset($_SESSION["usuario_Log_Username"])){
   include("model/users.php");  
-
+  include("model/calendario.php"); 
   $Users_instance = new Users();
   $permisos = $Users_instance->permisos();
+
+  $calendario_instance = new Calendario();
 
 ?>
 
@@ -146,17 +148,29 @@ if(isset($_SESSION["usuario_Log_Username"])){
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
      
           <a class="dropdown-item" href="list_tareas.php">
-            <span class="bg-info notificaciones ml-2 text-light p-1">3</span>
+            <span class="bg-info notificaciones   ml-2 text-light pl-3 pr-3 pt-1 pb-1">
+            <?php 
+              echo $cantidad = $calendario_instance->contadores(2);
+            ?>
+            </span>
             Para hoy
           </a>
       
          
           <a class="dropdown-item" href="list_tareas.php">
-          <span class="bg-warning notificaciones ml-2 text-light p-1">6</span>
+          <span class="bg-warning notificaciones ml-2 text-light pl-3 pr-3 pt-1 pb-1"> 
+            <?php 
+              echo $cantidad = $calendario_instance->contadores(3);
+            ?>
+          </span>
           Proximos</a>
      
           <a class="dropdown-item" href="list_tareas.php">
-          <span class="bg-danger notificaciones ml-2 text-light p-1">1</span>
+          <span class="bg-danger notificaciones ml-2 text-light pl-3 pr-3 pt-1 pb-1">
+            <?php 
+              echo $cantidad = $calendario_instance->contadores(1);
+            ?>
+          </span>
           En atraso</a>
 
         </div>

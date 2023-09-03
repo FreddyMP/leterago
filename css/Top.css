@@ -31,6 +31,10 @@ body{
 }
 .notificaciones{
    border-radius: 10px;
+   
+}
+.item{
+    width: 30px !important;
 }
 
 #grafico{
