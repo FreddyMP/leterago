@@ -16,16 +16,22 @@ $mantenimientos = $mantenimientos_instance->list();
       <div class="col-md-12 mb-3">
         <div class="row">
         <div class="col-md-3">
+          Desde
             <input class="form-control" type="text" name="" placeholder="Codigo">
           </div>
-          <div class="col-md-3">
-            <input class="form-control" type="text" name="" placeholder="Nombre">
-          </div>
           <div class="col-md-4">
+            Hasta
             <input class="form-control" type="date" name="">
           </div>
-          <div class="col-md-2">
-            <input class="btn btn-success col-md-12" type="submit" name="" value="Buscar" placeholder="Buscar reporte">
+          <div class="col-md-5">
+            <div class="row">
+              <div class="col-md-6 mt-4">
+                <input class="btn btn-success col-md-12 " type="submit" name="" value="Buscar">
+              </div>
+              <div class="col-md-6 mt-4">
+                <input class="btn btn-info col-md-12" type="submit" name="" value="Exportar">
+              </div>
+            </div>
           </div>
         </div>
       </div>

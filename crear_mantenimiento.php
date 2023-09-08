@@ -3,7 +3,7 @@
     include ('model/equipos.php');
     include('model/ubicaciones.php');
     include ("model/equipo_actividad.php");
-    include ("model/calendario.php");
+    include_once ("model/calendario.php");
                 
     $equipo_actividad_instance = new Equipo_actividad();
     $equipos_instance = new Equipos();

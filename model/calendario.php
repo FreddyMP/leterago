@@ -48,6 +48,20 @@
             return $cantidad_existente;
         }
 
+        public function find_equipos_programacion(){
+            include_once("kon.php");
+            $conexion = new Kon();
+            $con = $conexion->conn();
+
+            $query = "SELECT e.id as id, e.description as description, e.codigo as codigo,  e.frecuencia as frecuencia, e.marca as marca from programadetails pd
+                        inner join programaheader ph on ph.id = pd.id_programaHeader
+                        inner join equipos e on e.id = pd.id_equipo
+             where ph.estado = 1 and e.delete_date is null";
+
+            $exc = $con->query($query);
+
+            return $exc;
+        }
         public function list($equipo){
             include_once("kon.php");
             $conexion = new Kon();

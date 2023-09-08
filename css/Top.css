@@ -25,6 +25,29 @@ body{
     
     font-size: 12px !important;
 }
+.Container1{
+    display: none;
+}
+.filter_div{
+    display: none;
+    border:solid 1px blue;
+    padding: 10px;
+    border-radius: 5px;
+}
+.filte_input{
+    margin-left:-10px;
+}
+.filte_input2{
+    margin-left:-30px;
+}
+.cargando{
+    position: absolute;
+    width: 100% !important;
+    top:90px;
+}
+.cargando_img{
+    width: 100% !important;
+}
 #logo{
     width: 150px;
 

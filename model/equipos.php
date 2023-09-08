@@ -50,6 +50,22 @@ class Equipos{
 
        return $exc_query;
     }
+    public function filter($codigo, $nombre, $marca, $modelo){
+        include("kon.php");
+        $conectar = new Kon();
+        $con = $conectar->conn();
+
+        $query = "SELECT * from equipos 
+        where 
+        codigo like '%$codigo%'
+        and description like '%$nombre%'
+        and marca like '%$marca%'
+        and modelo like '%$modelo%'
+        and delete_date is null order by id desc";
+        $exc_query = mysqli_query($con, $query);
+
+       return $exc_query;
+    }
 
     public function find($id){
         $conexion = new Kon();

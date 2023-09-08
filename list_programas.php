@@ -55,7 +55,7 @@ $programa_exc = $programa_instance->list_header();
           if($estado != 0){
         ?>
           <a href="list_tareas.php?programa=<?php echo $id ?>"><button class="btn btn-success mb-2">Tareas</button></a>
-          <a href="ver_programa.php?id=<?php echo $row["id"] ?>"><button class="btn btn-warning mb-2">Editar</button></a>
+          <a href="edit_programa.php?id=<?php echo $id ?>"><button class="btn btn-warning mb-2">Editar</button></a>
           <?php
           }
           ?>

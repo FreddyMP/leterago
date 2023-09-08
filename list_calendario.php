@@ -1,14 +1,14 @@
 <?php
     include("plantilla/menu_top.php");
-    include("model/equipos.php");
+    include_once("model/calendario.php");
     include("model/programas.php");
 
     $programas_instance = new Programas();
     $programas = $programas_instance->find_active();
 
-    $equipos_instance = New Equipos();
+    $calendario_instance = New Calendario();
     
-    $exc_equipos = $equipos_instance->list();
+    $exc_equipos = $calendario_instance->find_equipos_programacion();
     $numero_de_mantenimientos = 0;
 ?>
 <link rel="stylesheet" href="css/form.css">
