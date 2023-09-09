@@ -75,13 +75,15 @@ class Mantenimiento{
     }
 
     public function list(){
-    
         $conexion = new Kon();
         $con = $conexion->conn();
 
-        $query = "SELECT m.id as id, m.documento_no as documento, m.documento_relacionado as relacionado, e.description as description, m.fecha as fecha
+        $query = "SELECT m.id as id, e.codigo as documento, m.documento_relacionado as relacionado,
+        e.description as description, m.fecha as fecha, u.description as ubicacion
         FROM mantenimientos m
-        INNER JOIN equipos  e on e.id = m.equipo ORDER BY m.id desc";
+        INNER JOIN equipos  e on e.id = m.equipo
+        INNER JOIN ubicaciones u on u.id = e.ubicacion
+        ORDER BY m.id desc";
 
         $exc = $con->query($query);
 
@@ -106,6 +108,39 @@ class Mantenimiento{
         $query = "SELECT * FROM mantenimientos_details where id_mantenimiento = $id";
         $exc = $con->query($query);
       
+        return $exc;
+    }
+
+    public function filter_all($codigo, $equipo, $ubicacion, $fecha_desde, $fecha_hasta ){
+        include_once("kon.php");
+        $conexion = new Kon();
+        $con = $conexion->conn();
+
+        $filtros = null;
+        if($fecha_desde != '' && $fecha_hasta != ''){
+            $filtros = " and (m.fecha > '".$fecha_desde."' or m.fecha = '".$fecha_desde."') 
+                         and (m.fecha < '".$fecha_hasta."' or m.fecha = '".$fecha_hasta."')";
+        }
+        if($fecha_desde != '' && $fecha_hasta == '' ){
+            $filtros = " and (m.fecha > '".$fecha_desde."' or m.fecha = '".$fecha_desde."')";
+        }
+        if($fecha_hasta != '' && $fecha_desde == ''){
+            $filtros = " and (m.fecha < '".$fecha_hasta."' or m.fecha = '".$fecha_hasta."')";
+        }
+
+        $query = "SELECT m.id as id, e.codigo as documento, m.documento_relacionado as relacionado,
+        e.description as description, m.fecha as fecha, u.description as ubicacion
+        FROM mantenimientos m
+        INNER JOIN equipos e on e.id = m.equipo
+        INNER JOIN ubicaciones u on u.id = e.ubicacion
+        where e.codigo like '%$codigo%'
+        and e.description like '%$equipo%'
+        and u.description like '%$ubicacion%'".$filtros." ORDER BY m.id desc";
+
+
+
+        $exc = $con->query($query);
+        
         return $exc;
     }
 
