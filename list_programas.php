@@ -13,19 +13,25 @@ $programa_exc = $programa_instance->list_header();
     <div class="formularios">
       <div class = "filtros mb-4">
         <div class="row">
-          <div class="col-md-6">
-            <div class="row">
-              <div class="col-md-4">
-                <input class="form-control" type="text" placeholder="Codigo" id="">
+        <div class="col-md-12">
+            <div class="row mb-4">
+              <div class="col-md-2">
+                <button class="btn text-primary" id="filtros">Filtros <img class="ml-3" src="imagen/settings.png" width="20" alt=""> </button>
               </div>
-              <div class="col-md-8">
-                <input class="form-control" type="text" placeholder="Descripcion" id="">
+              <div class="row filter_div col-md-10">
+                <div class="col-md-2 float-left ">
+                  <input class="form-control filte_input filter_keyup" type="text" id="codigo" placeholder="Codigo">
+                </div>
+                <div class="col-md-4 float-left ">
+                  <input class="form-control filte_input2 filter_keyup" type="text" id="nombre" placeholder="Nombre del equipo">
+                </div>
+                <div class="col-md-2 float-left ">
+                  <input class="form-control filte_input2 filter_keyup" type="text" id="ubicacion" placeholder="Marca">
+                </div>
+                <div class="col-md-3 float-left ">
+                  <input class="form-control filte_input2 filter_keyup" type="text" id="frecuencia" placeholder="Frecuencia">
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="float-right">
-                <button class="btn btn-success pl-5 pr-5">Buscar programacion</button>
             </div>
           </div>
         </div>
@@ -69,3 +75,36 @@ $programa_exc = $programa_instance->list_header();
 </table>
     </div>
 </div>
+
+
+<script>
+  $("#filtros").click(function(){
+    $(".filter_div").toggle(1500);
+  });
+
+
+  $(".filter_keyup").keyup(function(){
+    codigo = $("#codigo").val();
+    nombre = $("#nombre").val();
+    ubicacion  = $("#ubicacion").val();
+    desde = $("#desde").val();
+    hasta = $("#hasta").val();
+
+    var datos = {
+      nombre:nombre,
+      codigo:codigo,
+      ubicacion:ubicacion,
+      desde:desde,
+      hasta:hasta
+    }
+    $.ajax({
+            type: "POST",
+            url: "reload/filtrar_all_mantenimientos.php",
+            data: datos,
+            success: function(response){
+            $("#resultado").html(response);
+          }
+      });
+  });
+
+</script>

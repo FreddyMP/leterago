@@ -1,16 +1,16 @@
-<?php
-include("plantilla/menu_top.php");
-include("model/programas.php");
-$programa_instance = new Programas();
+  <?php
+  include("plantilla/menu_top.php");
+  include("model/programas.php");
+  $programa_instance = new Programas();
 
-$id = $_GET["id"];
+  $id = $_GET["id"];
 
 
-$programa_exc = $programa_instance->list_header();
-$programa = $programa_instance->find($id);
-$list_programa = $programa_instance->list_details($id);
-$not_list_programa = $programa_instance->not_list_details($id);
-?>
+  $programa_exc = $programa_instance->list_header();
+  $programa = $programa_instance->find($id);
+  $list_programa = $programa_instance->list_details($id);
+  $not_list_programa = $programa_instance->not_list_details($id);
+  ?>
 
 <link rel="stylesheet" href="css/form.css">
 <div class="cargando" >
@@ -56,17 +56,14 @@ $not_list_programa = $programa_instance->not_list_details($id);
           <div class="col-md-9">
             <div class="row">
               <div class="col-md-2">
-                <input class="form-control" type="text" placeholder="Codigo" id="">
+                <input class="form-control filte_input filter_keyup" type="text" id="codigo" placeholder="Codigo" id="">
+                <input  type="hidden" id="id" value = "<?php echo $id ?>">
               </div>
               <div class="col-md-4">
-                <input class="form-control" type="text" placeholder="Descripcion" id="">
+                <input class="form-control filte_input filter_keyup" type="text" id="nombre" placeholder="Descripcion" id="">
               </div>
               <div class="col-md-2">
-                <input class="form-control" type="text" placeholder="Marca" id="">
-              </div>
-              <div class="col-md-4">
-                <button class="btn btn-secondary">IN</button>
-                <button class="btn btn-secondary">OUT</button>
+                <input class="form-control filte_input filter_keyup" type="text" id="marca" placeholder="Marca" id="">
               </div>
             </div>
           </div>
@@ -76,52 +73,54 @@ $not_list_programa = $programa_instance->not_list_details($id);
                   <a href="reload/add_all.php?id=<?php echo $id ?>" class="btn btn-success pl-4 pr-4">Todos</a>
                 </div>
                 <div class="col-md-6">
-                  <a id="ninguno" class="btn btn-warning pl-3 pr-3">Ninguno</a>
+                  <a href="reload/quitar_all.php?id=<?php echo $id ?>" id="ninguno" class="btn btn-warning pl-3 pr-3">Ninguno</a>
                 </div>
             </div>
           </div>
         </div>
       </div>
-    <table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Codigo</th>
-      <th scope="col">Descripcion</th>
-      <th scope="col">Marca</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-      while($row = mysqli_fetch_assoc($list_programa)){
-    ?>
-    <tr>
-      <th scope="row"><?php echo $row["codigo"] ?></th>
-      <td><?php echo $row["descripcion"] ?></td>
-      <td><?php echo $row["marca"] ?></td>
-      <td>
-          <a href="controllers/del_equipo_programa.php?id_equipo=<?php echo $row["id_equipo"] ?>&&id_header=<?php echo $id ?>&&from_programa=1" class="btn btn-danger mb-2">Quitar</a>
-      </td>
-    </tr>
-    <?php
-      }
-    ?>
-     <?php
-      while($row2 = mysqli_fetch_assoc($not_list_programa)){
-    ?>
-    <tr>
-      <th scope="row"><?php echo $row2["codigo"] ?></th>
-      <td><?php echo $row2["description"] ?></td>
-      <td><?php echo $row2["marca"] ?></td>
-      <td>
-        <a href="controllers/add_equipo_programa.php?id_equipo=<?php echo $row2["id"] ?>&&id_header=<?php echo $id ?>&&from_programa=1" class="btn btn-info mb-2">Agregar</a>
-      </td>
-    </tr>
-    <?php
-      }
-    ?>
-  </tbody>
-</table>
+      <div id="resultado">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Codigo</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+            while($row = mysqli_fetch_assoc($list_programa)){
+          ?>
+          <tr>
+            <th scope="row"><?php echo $row["codigo"] ?></th>
+            <td><?php echo $row["descripcion"] ?></td>
+            <td><?php echo $row["marca"] ?></td>
+            <td>
+                <a href="controllers/del_equipo_programa.php?id_equipo=<?php echo $row["id_equipo"] ?>&&id_header=<?php echo $id ?>&&from_programa=1" class="btn btn-danger mb-2">Quitar</a>
+            </td>
+          </tr>
+          <?php
+            }
+          ?>
+          <?php
+            while($row2 = mysqli_fetch_assoc($not_list_programa)){
+          ?>
+          <tr>
+            <th scope="row"><?php echo $row2["codigo"] ?></th>
+            <td><?php echo $row2["description"] ?></td>
+            <td><?php echo $row2["marca"] ?></td>
+            <td>
+              <a href="controllers/add_equipo_programa.php?id_equipo=<?php echo $row2["id"] ?>&&id_header=<?php echo $id ?>&&from_programa=1" class="btn btn-info mb-2">Agregar</a>
+            </td>
+          </tr>
+          <?php
+            }
+          ?>
+        </tbody>
+      </table>
+      </div>
     </div>
 </div>
 
@@ -134,4 +133,26 @@ $(".Container").show();
 $(".cargando").hide();
 
 });
+  $(".filter_keyup").keyup(function(){
+    codigo = $("#codigo").val();
+    id = $("#id").val();
+    nombre = $("#nombre").val();
+    marca = $("#marca").val();
+
+    var datos = {
+      codigo:codigo,
+      id:id,
+      nombre:nombre,
+      marca:marca
+    }
+    $.ajax({
+            type: "POST",
+            url: "reload/filtrar_equipos_en_programacion.php",
+            data: datos,
+            success: function(response){
+            $("#resultado").html(response);
+          }
+      });
+  });
+
 </script>

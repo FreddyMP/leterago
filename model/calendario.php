@@ -62,6 +62,27 @@
 
             return $exc;
         }
+
+        public function filter_find_equipos_programacion($codigo, $nombre, $marca, $frecuencia){
+            include_once("kon.php");
+            $conexion = new Kon();
+            $con = $conexion->conn();
+
+            $query = "SELECT e.id as id, e.description as description, e.codigo as codigo,  e.frecuencia as frecuencia, e.marca as marca from programadetails pd
+                        inner join programaheader ph on ph.id = pd.id_programaHeader
+                        inner join equipos e on e.id = pd.id_equipo
+                        where ph.estado = 1 
+                        and e.delete_date is null
+                        and e.codigo like '%$codigo%'
+                        and e.description like '%$nombre%'
+                        and e.marca like '%$marca%'
+                        and e.frecuencia = $frecuencia";
+
+            $exc = $con->query($query);
+
+            return $exc;
+        }
+
         public function list($equipo){
             include_once("kon.php");
             $conexion = new Kon();
@@ -170,6 +191,42 @@
                 return 0;
             }
 
+        }
+
+        public function filter($id, $codigo, $nombre, $fecha_desde, $fecha_hasta){
+            
+            include_once("kon.php");
+            $conexion = new Kon();
+            $con = $conexion->conn();
+
+            $filtros = null;
+            if($fecha_desde != '' && $fecha_hasta != ''){
+                $filtros = " and (fechas_ejecucion.fecha > '".$fecha_desde."' or fechas_ejecucion.fecha = '".$fecha_desde."') 
+                             and (fechas_ejecucion.fecha < '".$fecha_hasta."' or fechas_ejecucion.fecha = '".$fecha_hasta."')";
+            }
+            if($fecha_desde != '' && $fecha_hasta == '' ){
+                $filtros = " and (fechas_ejecucion.fecha > '".$fecha_desde."' or fechas_ejecucion.fecha = '".$fecha_desde."')";
+            }
+            if($fecha_hasta != '' && $fecha_desde == ''){
+                $filtros = " and (fechas_ejecucion.fecha < '".$fecha_hasta."' or fechas_ejecucion.fecha = '".$fecha_hasta."')";
+            }
+
+            $query = "SELECT fechas_ejecucion.id as id, equipos.id as equipo, equipos.codigo as codigo, equipos.description as descripcion,
+                      fechas_ejecucion.fecha as fecha
+                      FROM fechas_ejecucion
+                      inner join equipos on equipos.id = fechas_ejecucion.equipo
+                      where realizado = 0
+                      and equipos.codigo like '%$codigo%'
+                      and equipos.description like '%$nombre%'".$filtros." order by fechas_ejecucion.fecha asc
+                      ";
+                try {
+                    $exc = $con->query($query);
+                } catch (\Throwable $th) {
+                    echo $th;
+                }
+            
+
+            return $exc;
         }
 
         public function contadores($estado){

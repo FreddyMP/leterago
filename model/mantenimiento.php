@@ -144,6 +144,45 @@ class Mantenimiento{
         return $exc;
     }
 
+    public function find_by_equipo($id_equipo){
+        $conexion = new Kon();
+        $con = $conexion->conn();
+
+        $query = "SELECT m.id as id, u.name as nombre, u.lastname as apellido, m.date_planification as fecha_planificacion,  
+        fecha as fecha
+        FROM mantenimientos m
+        INNER JOIN equipos e on e.id = m.equipo
+        INNER JOIN usuarios u on u.id = m.create_by
+        where m.equipo = $id_equipo
+        order by m.id desc";
+
+        $exc = $con->query($query);
+     
+        return $exc;
+    }
+
+    public function filter_find_by_equipo($id_equipo, $nombre, $fecha_desde, $fecha_hasta){
+        include("fecha_filtro.php");
+        include("kon.php");
+        
+        $filtros = filtro_fecha($fecha_desde, $fecha_hasta);
+        $conexion = new Kon();
+        $con = $conexion->conn();
+
+        $query = "SELECT m.id as id, u.name as nombre, u.lastname as apellido, m.date_planification as fecha_planificacion,  
+        fecha as fecha
+        FROM mantenimientos m
+        INNER JOIN equipos e on e.id = m.equipo
+        INNER JOIN usuarios u on u.id = m.create_by
+        where m.equipo = $id_equipo
+        and (u.name like '%$nombre%' or u.lastname like '%$nombre%')
+        ".$filtros." order by m.id desc";
+
+        $exc = $con->query($query);
+     
+        return $exc;
+    }
+
     public function delete(){
 
     }

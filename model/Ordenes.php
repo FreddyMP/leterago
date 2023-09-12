@@ -68,6 +68,33 @@
             return $orden;
         }
 
+        public function filter($orden, $solicitado_por, $fecha_desde, $fecha_hasta){
+            include("kon.php");
+            $conexion = new Kon();
+            $con = $conexion->conn();
+
+
+            $filtros = null;
+            if($fecha_desde != '' && $fecha_hasta != ''){
+                $filtros = " and (fecha > '".$fecha_desde."' or fecha = '".$fecha_desde."') 
+                             and (fecha < '".$fecha_hasta."' or fecha = '".$fecha_hasta."')";
+            }
+            if($fecha_desde != '' && $fecha_hasta == '' ){
+                $filtros = " and (fecha > '".$fecha_desde."' or fecha = '".$fecha_desde."')";
+            }
+            if($fecha_hasta != '' && $fecha_desde == ''){
+                $filtros = " and (fecha < '".$fecha_hasta."' or fecha = '".$fecha_hasta."')";
+            }
+
+            $query ="SELECT * FROM ordentrabajoheader
+             where delete_date is null
+             and orderNum like '%$orden%'
+             and solicitadoPor like '%$solicitado_por%' ".$filtros." ORDER BY id desc";
+
+            $Ordenes = $con->query($query);
+
+            return $Ordenes;
+        }
 
         public function list_ordenes_search($id){
             $conexion = new Kon();

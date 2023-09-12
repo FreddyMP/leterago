@@ -110,21 +110,33 @@
                 $exc = $con->query($Limpiar);
     
                 $query_equipos = "SELECT id from equipos where delete_date is null";
-                $exc = $con->query($query_equipos);
+                $exc_equipo = $con->query($query_equipos);
     
-                while($equipo = mysqli_fetch_assoc($exc)){
+                while($equipo = mysqli_fetch_assoc($exc_equipo)){
                     $id_equipo = $equipo["id"];
                     $query = "INSERT INTO programadetails (id_programaHeader, id_equipo) values ($id_header, $id_equipo)";
-                    $exc = $con->query($query);
+                    $exc_insert = $con->query($query);
                 }
     
                 return 1;
             } catch (\Throwable $th) {
-                return 2;
+                return $th;
             }
+        }
 
+        public function quitar_all($id_header){
+            include("kon.php");
+            $conexion = new Kon();
+            $con = $conexion->conn();
 
-
+            try {
+                $Limpiar = "DELETE from programadetails WHERE id_programaHeader = $id_header";
+                $exc = $con->query($Limpiar);
+    
+                return 1;
+            } catch (\Throwable $th) {
+                return $th;
+            }
         }
 
         public  function not_list_details($id_header){
@@ -187,7 +199,42 @@
         }
 
         public function delete(){
+//
+        }
 
+        public function filter_list_details($id_header, $codigo, $nombre, $marca){
+            include("kon.php");
+            $conexion = new Kon();
+            $con = $conexion->conn();
+
+            $query = "SELECT programadetails.id_programaHeader as id_header, equipos.id as id_equipo,
+            equipos.description as descripcion, equipos.codigo as codigo, equipos.marca as marca, equipos.modelo as modelo
+            FROM programadetails
+            inner join equipos on equipos.id = programadetails.id_equipo
+            WHERE programadetails.id_programaHeader = $id_header
+            and equipos.codigo like '%$codigo%'
+            and equipos.description like '%$nombre%'
+            and equipos.marca like '%$marca%' ";
+
+            $exc = $con->query($query);
+
+            return $exc;
+        }
+
+        public function filter_not_list_details($id_header, $codigo, $nombre, $marca){
+           
+            $conexion = new Kon();
+            $con = $conexion->conn();
+
+            $query = "SELECT * FROM equipos 
+                    where id not in (select id_equipo from programadetails where id_programaHeader = $id_header)
+                    and codigo like '%$codigo%'
+                    and description like '%$nombre%'
+                    and marca like '%$marca%'  order by id desc";
+
+            $exc = $con->query($query);
+
+            return $exc;
         }
     }
 ?>
