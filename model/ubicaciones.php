@@ -1,25 +1,25 @@
 <?php
 class Ubicaciones{
 
-    public function create($codigo, $description, $id_user){
+    public function create($description, $id_user){
         include("kon.php");
 
         $conexion = new Kon();
         $con = $conexion->conn();
 
-        $query= "INSERT INTO ubicaciones (codigo, description, create_by) values ('$codigo', '$description', '$id_user')";
+        $query= "INSERT INTO ubicaciones (description, create_by) values ('$description', '$id_user')";
         $con->query($query);
 
     }
 
-    public function edit($id, $id_user, $codigo, $description){
+    public function edit($id, $id_user, $description){
         include("kon.php");
 
         $conexion = new Kon();
         $con = $conexion->conn();
 
         $modify_date = date("Y-m-d :His");
-        $query="UPDATE ubicaciones set codigo = '$codigo', description= '$description', modify_date = '$modify_date', modify_by= '$id_user'
+        $query="UPDATE ubicaciones set description= '$description', modify_date = '$modify_date', modify_by= '$id_user'
         where id = $id";
         try {
             $con->query($query);

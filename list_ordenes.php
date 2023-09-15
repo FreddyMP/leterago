@@ -42,7 +42,6 @@ $ordenes = $Ordenes_instance->list();
             <tr>
               <th scope="col">No. de orden</th>
               <th scope="col">Solicitado por</th>
-              <th scope="col">Departamento</th>
               <th scope="col">Fecha</th>
               <th scope="col">Action</th>
             </tr>
@@ -54,7 +53,7 @@ $ordenes = $Ordenes_instance->list();
             <tr>
               <th scope="row"><?php echo $row["orderNum"] ?></th>
               <td><?php echo $row["solicitadoPor"] ?></td>
-              <td><?php echo $row["departamento"] ?></td>
+          
               <td><?php echo $row["fecha"] ?></td>
               <td>
                     <a href="edit_orden.php?id=<?php echo $row["id"] ?>"><button class="btn btn-warning">Editar</button></a>

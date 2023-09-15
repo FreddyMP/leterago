@@ -34,7 +34,7 @@
 <?php
     }
 ?>
-    <h3>Crear equipo</h3>
+    <h3>Editar equipo</h3>
     <div class="formularios">
         <form action="controllers/editar_equipo.php" method="post">
             <div class="row">
@@ -89,24 +89,7 @@
                         ?>
                     </select>
                 </div>
-                <div class="col-md-6 mt-3">
-                <select class="form-control" name="almacen" id="">
-                    <?php
-                        $get_description = new Almacenes();
-                        $description = $get_description->find($equipos["id_almacen"]);
-                        ?>
-                        <option value="<?php echo $description["id"]?>"><?php echo $description["description"]?></option>
-                        <?php
-                        while($row = mysqli_fetch_assoc($almacenes)){
-                            if($description["id"] != $row["id"]){
-                    ?>
-                        <option value="<?php echo $row["id"] ?>"><?php echo $row["description"] ?></option>
-                    <?php
-                            }
-                        }
-                     ?>
-                    </select>
-                </div>
+                
                 <div class="col-md-6 mt-3">
                 <select class="form-control" name="ubicacion" id="">
                         <?php 
@@ -118,7 +101,7 @@
                             while($row = mysqli_fetch_assoc($ubicaciones)){
                                 if($description["id"] != $row["id"]){
                         ?>
-                        <option value="<?php echo $row["id"] ?>"><?php echo $row["description"] ?></option>
+                                <option value="<?php echo $row["id"] ?>"><?php echo $row["description"] ?></option>
                         <?php
                             }
                         }
@@ -128,7 +111,7 @@
                 <div class="col-md-6 mt-3">
                     <select class="form-control" name="frecuencia" id="">
                             <?php 
-                            if($equipos['frecuencia']== 1){
+                            if($row['frecuencia']== 1){
                                 ?>
                                     <option value="1">Mensual</option>
                                     <option value="2">Bimensual</option>
@@ -138,8 +121,7 @@
                                     <option value="6">Anual</option>
                                 <?php
                             }
-                            ?>
-                            <?php 
+                            
                             if($equipos['frecuencia']== 2){
                                 ?>
                                     <option value="2">Bimensual</option>
@@ -149,9 +131,7 @@
                                     <option value="5">Semestral</option>
                                     <option value="6">Anual</option>
                                 <?php
-                            }
-                            ?>
-                            <?php 
+                            } 
                             if($equipos['frecuencia']== 3){
                                 ?>
                                     <option value="3">Trimestral</option>
@@ -162,8 +142,7 @@
                                     <option value="6">Anual</option>
                                 <?php
                             }
-                            ?>
-                            <?php 
+                     
                             if($equipos['frecuencia']== 4){
                                 ?>
                                     <option value="4">Cuatrimestral</option>
@@ -174,8 +153,7 @@
                                     <option value="6">Anual</option>
                                 <?php
                             }
-                            ?>
-                            <?php 
+                        
                             if($equipos['frecuencia']== 5){
                                 ?>
                                     <option value="5">Semestral</option>
@@ -186,8 +164,7 @@
                                     <option value="6">Anual</option>
                                 <?php
                             }
-                            ?>
-                            <?php 
+                     
                             if($equipos['frecuencia']== 6){
                                 ?>
                                     <option value="6">Anual</option>
@@ -196,6 +173,18 @@
                                     <option value="3">Trimestral</option>
                                     <option value="4">Cuatrimestral</option>
                                     <option value="5">Semestral</option>
+                                <?php
+                            }
+                  
+                            if($equipos['frecuencia']== 0){
+                                ?> 
+                                    <option value="0">--Seleccion--</option>
+                                    <option value="1">Mensual</option>
+                                    <option value="2">Bimensual</option>
+                                    <option value="3">Trimestral</option>
+                                    <option value="4">Cuatrimestral</option>
+                                    <option value="5">Semestral</option>
+                                    <option value="6">Anual</option>
                                 <?php
                             }
                             ?>

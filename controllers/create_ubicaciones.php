@@ -3,7 +3,7 @@ include("../model/ubicaciones.php");
 session_start();
 $Ubicaciones_instance = new Ubicaciones();
 
-$codigo = $_POST["codigo"];
+#$codigo = $_POST["codigo"];
 $description = $_POST["description"];
 
 
@@ -20,7 +20,7 @@ if($find_comillas_dobles == null &&  $find_comillas_simples == null){
 
 $id_user =  $_SESSION["usuario_Log_Id"];
 
-$ubicacion = $Ubicaciones_instance->create($codigo, $description, $id_user);
+$ubicacion = $Ubicaciones_instance->create($description, $id_user);
 
 header("location:../list_ubicaciones.php");
 ?>

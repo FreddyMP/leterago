@@ -79,23 +79,9 @@ if(isset($_SESSION["usuario_Log_Username"])){
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Almacenes
+          Ubicaciones
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <?php
-           if($permisos["Modulo_Almacenes"] == 1){
-            ?>
-          <a class="dropdown-item" href="list_almacenes.php">Almacenes</a>
-          <div class="dropdown-divider"></div>
-          <?php
-           }
-           if($permisos["Modulo_Almacenes"] == 1 || $permisos["Modulo_Roles"]== 1){
-            ?>
-          <a class="dropdown-item" href="create_almacen.php">Crear almacenes</a>
-          <div class="dropdown-divider"></div>
-            <?php
-           }
-            ?>
             <a class="dropdown-item" href="list_ubicaciones.php">Ubicaciones</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="crear_ubicacion.php">Crear ubicaciones</a>

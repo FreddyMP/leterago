@@ -26,9 +26,6 @@
     <div class="formularios">
         <form action="controllers/editar_ubicacion.php" method="post">
             <div class="row">
-                <div class="col-md-4 mt-3">
-                    <input class="form-control" name="codigo" value="<?php echo $ubicaciones["codigo"] ?>"  type="text" placeholder="Codigo" required>
-                </div>
                 <div class="col-md-8 mt-3">
                 <input  type="hidden" name="id" value="<?php echo $ubicaciones["id"] ?>"  required>
 

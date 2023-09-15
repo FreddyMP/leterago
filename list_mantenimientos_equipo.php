@@ -62,7 +62,7 @@ $mantenimientos = $mantenimientos_instance->find_by_equipo($id);
               <td><?php echo $row["fecha_planificacion"]?></td>
               <td><?php echo $row["fecha"]?></td>
               <td>
-                    <a href="ver_programa.php"><button class="btn btn-warning">Ver mas</button></a>
+                    <a href="ver_programa.php?id_mantenimiento=<?php echo $row["id"] ?>"><button class="btn btn-warning">Ver mas</button></a>
               </td>
             </tr>
             <?php

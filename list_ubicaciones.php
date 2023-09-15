@@ -22,7 +22,7 @@
       while($row = mysqli_fetch_assoc($exc_ubicaciones)){
     ?>
     <tr>
-      <th scope="row"><?php echo $row["codigo"] ?></th>
+      <th scope="row"><?php echo $row["id"] ?></th>
       <td><?php echo $row["description"]?></td>
       <td>
             <a href="edit_ubicacion.php?id=<?php echo $row['id']?>"><button class="btn btn-warning">Editar</button></a>

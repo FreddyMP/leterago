@@ -1,14 +1,14 @@
 <?php
 class Equipos{
 
-    public function create($id_user, $codigo, $description, $orden = 0, $categoria, $marca, $modelo, $serie, $estado, $observaciones = "N/A", $almacen, $ubicacion, $frecuencia){
+    public function create($id_user, $codigo, $description, $orden = 0, $marca, $modelo, $serie, $estado, $observaciones = "N/A", $ubicacion, $frecuencia){
         include("kon.php");
 
         $conexion = new Kon();
         $con = $conexion->conn();
 
-        $query = "INSERT INTO equipos (create_by, codigo, description, orden, id_categoria, marca,  modelo, serie, estado, observaciones, id_almacen, ubicacion, frecuencia ) 
-            VALUES ('$id_user','$codigo', '$description',$orden, $categoria, '$marca', '$modelo', '$serie', '$estado','$observaciones', $almacen, '$ubicacion', $frecuencia)";
+        $query = "INSERT INTO equipos (create_by, codigo, description, orden, marca,  modelo, serie, estado, observaciones, ubicacion, frecuencia ) 
+            VALUES ('$id_user','$codigo', '$description',$orden, '$marca', '$modelo', '$serie', '$estado','$observaciones', '$ubicacion', $frecuencia)";
 
         try {
             $exc_query = $con->query($query);
@@ -20,7 +20,7 @@ class Equipos{
 
     }
 
-    public function edit($id,$id_user, $codigo, $description, $orden = 0, $categoria, $marca, $modelo, $serie, $estado, $observaciones = "N/A", $almacen, $ubicacion, $frecuencia){
+    public function edit($id,$id_user, $codigo, $description, $orden = 0, $marca, $modelo, $serie, $estado, $observaciones = "N/A", $ubicacion, $frecuencia){
         include("kon.php");
 
         $conexion = new Kon();
@@ -29,8 +29,8 @@ class Equipos{
         $modify_date = date("Y-m-d :His");
 
         $query = "UPDATE equipos SET modify_date= '$modify_date', modify_by = '$id_user', codigo = '$codigo', description = '$description', 
-        orden=$orden, id_categoria= $categoria, marca='$marca',  modelo= '$modelo', serie='$serie', estado='$estado', 
-        observaciones='$observaciones', id_almacen=$almacen, ubicacion='$ubicacion', frecuencia=$frecuencia WHERE id = $id ";
+        orden=$orden, marca='$marca',  modelo= '$modelo', serie='$serie', estado='$estado', 
+        observaciones='$observaciones', ubicacion='$ubicacion', frecuencia=$frecuencia WHERE id = $id ";
 
         try {
             $exc_query = $con->query($query);

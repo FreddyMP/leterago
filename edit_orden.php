@@ -26,41 +26,14 @@
             <h5>Datos de la solicitud</h5>
             <div class="row">
                 <div class="col-md-6 mt-3">
-                    <input class="form-control" value="<?php echo $orden["documentoNum"] ?>" name="documentoNum" type="text" placeholder="Documento No." required>
-                    <input class="form-control" value="<?php echo $orden["id"] ?>"  name="id" type="hidden" placeholder="Version" required>
-
-                </div>
-                <div class="col-md-6 mt-3">
-                    <input class="form-control" value="<?php echo $orden["version"] ?>"  name="version" type="text" placeholder="Version" required>
-                </div>
-            
-
-                <div class="col-md-6 mt-3">
-                    <input class="form-control" value="<?php echo $orden["documentoRelacionado"] ?>" name="documentorelacion" type="text" placeholder="Doc. relacionado" required>
-                </div>
-                <div class="col-md-6 mt-3">
                     <input class="form-control" value="<?php echo $orden["orderNum"] ?>" name="orden" type="text" placeholder="No. de Orden" required>
+                    <input class="form-control" value="<?php echo $orden["id"] ?>"  name="id" type="hidden" placeholder="Version" required>
                 </div>
                 <div class="col-md-6 mt-3">
-                    <input class="form-control" value="<?php echo str_replace(' 00:00:00',' ',$orden["fecha"]) ?>" name="fecha" type="text" required>
-                </div>
-                <div class="col-md-6 mt-3">
-                    <input class="form-control" value="<?php echo $orden["hora"]?>" name="hora" type="time" required>
+                    <input class="form-control" value="<?php echo $orden["fecha"]?>" name="fecha" type="text" required>
                 </div>
                 <div class="col-md-12 mt-3">
                     <input class="form-control" value="<?php echo $orden['solicitadoPor']?>" name="solicitadopor" type="text" placeholder="Solicitado por" required>
-                </div>
-                <div class="col-md-6 mt-3">
-                    <input class="form-control" value="<?php echo $orden['departamento']?>" name="departamento" type="text" placeholder="Departamentos" required>
-                </div>
-                <div class="col-md-6 mt-3">
-                    <input class="form-control" value="<?php echo $orden["areaOEquipo"]?>" name="areaOEquipo" type="text" placeholder="Area o equipo" required>
-                </div>
-                <div class="col-md-12 mt-3">
-                    <input class="form-control" value="<?php echo $orden["codigo"]?>" name="codigo" type="text" placeholder="Codigo" required>
-                </div>
-                <div class="col-md-6 mt-3">
-                    <input class="form-control" value="<?php echo $orden["ubicacion"]?>" name="ubicacion" type="text" placeholder="Ubicacion" required>
                 </div>
                 <div class="col-md-6 mt-3">
                     <select class="form-control" name="prioridades" id="">
@@ -90,11 +63,14 @@
 
                     </select>
                 </div>
-                <div class="col-md-12 mt-3">
-                    <textarea   name=" description" class="form-control" id="" placeholder="Descripcion" cols="30" rows="10"><?php echo $orden["descripcion"]?></textarea>
-                </div>
-                <div class="col-md-12 mt-3">
-                    <textarea name="notas" class="form-control" id="" placeholder="Notas:    " cols="30" rows="10"><?php echo $orden["nota"]?></textarea>
+                <div class="col-md-6 row mt-3">
+                    <div class="col-md-10">
+                        <a class="btn btn col-md-12" href="archivos/<?php echo $orden["documento"] ?>" download="<?php echo $orden["documento_original"] ?>">Descargar archivo</a>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-danger col-md-12">X</button>
+                    </div>
+                    
                 </div>
             </div>
             <div class="row">

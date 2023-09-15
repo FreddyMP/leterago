@@ -8,8 +8,8 @@
 
             $temp = rand(1,99999);
 
-            $query = "INSERT INTO programaheader (doc_no, doc_relacionado, fecha_ini, fecha_fin, descripcion, version, temp, create_by) 
-            VALUE ('$rpg', '$for', '$fecha_init', '$fecha_fin', '$description', $version, $temp, '$id_user')";
+            $query = "INSERT INTO programaheader (estado, doc_no, doc_relacionado, fecha_ini, fecha_fin, descripcion, version, temp, create_by) 
+            VALUE (1, '$rpg', '$for', '$fecha_init', '$fecha_fin', '$description', $version, $temp, '$id_user')";
 
             try {
                 $con->query($query);

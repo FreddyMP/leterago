@@ -1,16 +1,14 @@
 <?php
     class Ordenes{
 
-        public function create($id_user, $documentoNum, $version, $documentorelacionado, $ordenNum, $fecha, $hora, $solicitado_por,
-        $departamento, $nivelPrioridad, $areaOEquipo, $codigo, $ubicacion, $descripcion, $nota){
+        public function create($id_user, $ordenNum, $documento, $documento_original, $fecha, $solicitado_por, $nivelPrioridad){
 
-            include("kon.php");
+            include_once("kon.php");
             $conexion = new Kon();
             $con = $conexion->conn();
 
-            $query = "INSERT INTO `ordentrabajoheader`(documentoNum, version, documentoRelacionado, orderNum, fecha, hora, solicitadoPor, departamento, nivelPrioridad, areaOEquipo, codigo, ubicacion, descripcion,nota, create_by)
-             VALUES ('$documentoNum','$version','$documentorelacionado','$ordenNum','$fecha','$hora','$solicitado_por',
-             '$departamento','$nivelPrioridad','$areaOEquipo','$codigo','$ubicacion','$descripcion','$nota','$id_user')";
+            $query = "INSERT INTO `ordentrabajoheader`(orderNum, documento, documento_original , fecha, solicitadoPor, nivelPrioridad, create_by)
+             VALUES ('$ordenNum','$documento','$documento_original','$fecha','$solicitado_por','$nivelPrioridad','$id_user')";
 
             try {
                 $exc = $con->query($query);
@@ -22,8 +20,8 @@
 
         }
 
-        public function edit($id,$id_user, $documentoNum, $version, $documentorelacionado, $ordenNum, $fecha, $hora, $solicitado_por,
-        $departamento, $nivelPrioridad, $areaOEquipo, $codigo, $ubicacion, $descripcion, $nota){
+        public function edit($id,$id_user, $ordenNum, $fecha, $solicitado_por,
+        $nivelPrioridad){
             
             include("kon.php");
 
@@ -45,6 +43,17 @@
 
         }
 
+        public function last_id(){
+            include_once("kon.php");
+            $conexion = new Kon();
+            $con = $conexion->conn();
+
+            $query="SELECT id, count(*) as exitencia FROM ordentrabajoheader order by id desc limit 1";
+            $excute = $con->query($query);
+            $orden = mysqli_fetch_assoc($excute);
+
+            return $orden;
+        }
 
         public function list(){
             $conexion = new Kon();

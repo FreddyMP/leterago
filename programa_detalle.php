@@ -1,19 +1,17 @@
 <?php
-include("plantilla/menu_top.php");
-include("model/programas.php");
-include("model/equipos.php");
-include("model/almacenes.php");
-include("model/equipo_actividad.php");
-include("model/actividades.php");
+  
+  include("plantilla/menu_top.php");
+  include("model/programas.php");
+  $programa_instance = new Programas();
 
-$programa_instance = new Programas();
-$equipos_instance = new Equipos();
-$almacenes_instance = new Almacenes();
-$equipos_actividades = new Equipo_actividad();
-$actividades = new Actividades();
+  $id = $_GET["id"];
 
 
-$exc_equipo = $equipos_instance->list();
+  $programa_exc = $programa_instance->list_header();
+  $programa = $programa_instance->find($id);
+  $list_programa = $programa_instance->list_details($id);
+  $not_list_programa = $programa_instance->not_list_details($id);
+  
 
 $header = $_GET["id_header"];
 
@@ -32,78 +30,41 @@ $header = $_GET["id_header"];
                 <button class = "btn btn-success float-right mb-3">Agregar todos</button>
             </div>
         </div>
-       
-      <table class="table table-striped">
+        <table class="table table-striped">
         <thead>
           <tr>
             <th scope="col">Codigo</th>
-            <th scope="col">Equipo</th>
-            <th scope="col">Actividades</th>
-            <th scope="col">Frecuencia</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Marca</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
-      <tbody>
-        <?php
-          while ($row = mysqli_fetch_assoc($exc_equipo)) {
-
-        ?>
+        <tbody>
+          <?php
+            while($row = mysqli_fetch_assoc($list_programa)){
+          ?>
           <tr>
-            <th scope="row"><?php  echo $row["codigo"]?></th>
+            <th scope="row"><?php echo $row["codigo"] ?></th>
+            <td><?php echo $row["descripcion"] ?></td>
+            <td><?php echo $row["marca"] ?></td>
             <td>
-                <?php 
-                    $almacenes = $almacenes_instance->find($row["id_almacen"]);
-                    $almacenes_description = $almacenes["description"];
-                      echo $row["description"]."(".$almacenes_description.")"?>
-            </td>
-            <td><?php
-                $exc_actividades = $equipos_actividades->list_actividades_search($row["id"]);
-                while($actividades = mysqli_fetch_assoc($exc_actividades)){
-                  echo $actividades["description"].", ";
-                }
-              ?>
-            </td>
-            <td>  
-              <?php  
-                if($row["frecuencia"] == '1'){
-                  echo 'Mensual';
-                }
-                if($row["frecuencia"] == '2'){
-                  echo 'Bimensual';
-                }
-                if($row["frecuencia"] == '3'){
-                  echo 'Trimestral';
-                }
-                if($row["frecuencia"] == '4'){
-                  echo 'Cuatrimestral';
-                }
-                if($row["frecuencia"] == '5'){
-                  echo 'Semestral';
-                }
-                if($row["frecuencia"] == '6'){
-                  echo 'Anual';
-                }
-              
-              ?>
-          
-            </td>
-            <td>
-              <?php
-                $equipo_existe = $programa_instance->find_details($header, $row["id"]);
-                $existe = $equipo_existe["existe"];
-                if($existe < 1){
-              ?>
-              <a class="btn btn-info" href="controllers/add_equipo_programa.php?id_header=<?php echo $header?>&&id_equipo=<?php echo $row["id"] ?>" >Agregar</a>
-              <?php
-                }else{
-                  ?>
-                  <a class="btn btn-danger" href="controllers/del_equipo_programa.php?id_header=<?php echo $header?>&&id_equipo=<?php echo $row["id"] ?>" >Quitar</a>
-                  <?php
-                }
-              ?>
+                <a href="controllers/del_equipo_programa.php?id_equipo=<?php echo $row["id_equipo"] ?>&&id_header=<?php echo $id ?>&&from_programa=1" class="btn btn-danger mb-2">Quitar</a>
             </td>
           </tr>
-          
+          <?php
+            }
+          ?>
+          <?php
+            while($row2 = mysqli_fetch_assoc($not_list_programa)){
+          ?>
+          <tr>
+            <th scope="row"><?php echo $row2["codigo"] ?></th>
+            <td><?php echo $row2["description"] ?></td>
+            <td><?php echo $row2["marca"] ?></td>
+            <td>
+              <a href="controllers/add_equipo_programa.php?id_equipo=<?php echo $row2["id"] ?>&&id_header=<?php echo $id ?>&&from_programa=1" class="btn btn-info mb-2">Agregar</a>
+            </td>
+          </tr>
           <?php
             }
           ?>

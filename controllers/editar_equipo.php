@@ -11,8 +11,8 @@ include("../model/equipos.php");
  $modelo = $_POST["modelo"];
  $serie = $_POST["serie"];
  $estado = $_POST["estado"];
- $categoria = $_POST["categoria"];
- $almacen = $_POST["almacen"];
+ #$categoria = $_POST["categoria"];
+ #$almacen = $_POST["almacen"];
  $ubicaciones = $_POST["ubicacion"];
  $frecuencia = $_POST["frecuencia"];
  $orden = 0;
@@ -21,8 +21,8 @@ include("../model/equipos.php");
  }
  $observaciones = $_POST["observaciones"];
 
- $equipo = $equipos_instance->edit($id, $id_user, $codigo, $description, $orden, $categoria, $marca, $modelo, $serie, $estado, $observaciones,
-$almacen, $ubicaciones, $frecuencia);
+ $equipo = $equipos_instance->edit($id, $id_user, $codigo, $description, $orden, $marca, $modelo, $serie, $estado, $observaciones,
+ $ubicaciones, $frecuencia);
 
 if($equipo=='1'){
     header("location:../list_equipos.php");

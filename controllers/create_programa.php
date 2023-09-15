@@ -19,7 +19,7 @@
         $id_header = $programa_instance->find_temp($temp);
         $id = $id_header["id"];
         
-        header("location:../programa_detalle.php?id_header=$id");
+        header("location:../list_programas.php");
     }else{
         echo $programa;
     }
