@@ -15,7 +15,7 @@
           <div class="col-md-2">
             <button class="btn text-primary" id="filtros">Filtros <img class="ml-3" src="imagen/settings.png" width="20" alt=""> </button>
           </div>
-          <div class="row filter_div col-md-10">
+          <div class="row filter_div col-md-9">
             <div class="col-md-2 float-left ">
               <input class="form-control filte_input filter_keyup" type="text" id="codigo" placeholder="Codigo">
             </div>
@@ -28,6 +28,9 @@
             <div class="col-md-4 float-left ">
               <input class="form-control filte_input2 filter_keyup" type="text" id="modelo" placeholder="Modelo">
             </div>
+          </div>
+          <div class="col-md-1 float-right">
+            <a href="#" class="btn btn-danger float-right Generar_PDF">PDF</a>
           </div>
         </div>
       </div>
@@ -92,6 +95,21 @@
             $("#resultado").html(response);
           }
       });
+  });
+
+  $(".Generar_PDF").click(function(){
+    codigo = $("#codigo").val();
+    nombre = $("#nombre").val();
+    marca  = $("#marca").val();
+    modelo = $("#modelo").val();
+
+    var datos = {
+      nombre:nombre,
+      codigo:codigo,
+      marca:marca,
+      modelo:modelo
+    }
+    window.open("pdf/equipos.php?codigo="+codigo+"&&nombre="+nombre+"&&marca="+marca+"&&modelo="+modelo);
   });
 
 </script>

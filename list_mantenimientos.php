@@ -18,24 +18,27 @@ $mantenimientos = $mantenimientos_instance->list();
           <div class="col-md-2">
             <button class="btn text-primary" id="filtros">Filtros <img class="ml-3" src="imagen/settings.png" width="20" alt=""> </button>
           </div>
-          <div class="row filter_div col-md-10">
+          <div class="row filter_div col-md-9">
             <div class="col-md-2 float-left ">
               <input class="form-control filte_input filter_keyup" type="text" id="codigo" placeholder="Codigo">
             </div>
-          <div class="col-md-4 float-left ">
-            <input class="form-control filte_input2 filter_keyup" type="text" id="nombre" placeholder="Nombre del equipo">
+            <div class="col-md-4 float-left ">
+              <input class="form-control filte_input2 filter_keyup" type="text" id="nombre" placeholder="Nombre del equipo">
+            </div>
+            <div class="col-md-2 float-left ">
+              <input class="form-control filte_input2 filter_keyup" type="text" id="ubicacion" placeholder="Ubicacion">
+            </div>
+            <div class="col-md-2 float-left ">
+              <input class="form-control filte_input2 filter_fechas" type="date" id="desde">
+            </div>
+            <div class="col-md-2 float-left ">
+              <input class="form-control filte_input2 filter_fechas" type="date" id="hasta">
+            </div>
           </div>
-          <div class="col-md-2 float-left ">
-            <input class="form-control filte_input2 filter_keyup" type="text" id="ubicacion" placeholder="Ubicacion">
-          </div>
-          <div class="col-md-2 float-left ">
-            <input class="form-control filte_input2 filter_fechas" type="date" id="desde">
-          </div>
-          <div class="col-md-2 float-left ">
-            <input class="form-control filte_input2 filter_fechas" type="date" id="hasta">
+          <div class="col-md-1 float-right p">
+              <button class="btn btn-danger float-right">PDF</button>
           </div>
         </div>
-      </div>
           <div id="resultado">
           <table class="table table-striped">
             <thead>
