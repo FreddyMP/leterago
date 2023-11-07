@@ -171,62 +171,203 @@
                     </select>
                 </div>
                 <div class="col-md-3 pt-3">
-                    Usuarios
+                    Ubicaciones
                     <select class="form-control" name="" id="">
                         <option value="1">Si</option>
                         <option value="0">No</option>
                     </select>
                 </div>
                 <div class="col-md-3 pt-3">
-                    Usuarios
+                    Crear Ubicaciones
                     <select class="form-control" name="" id="">
                         <option value="1">Si</option>
                         <option value="0">No</option>
                     </select>
                 </div>
                 <div class="col-md-3 pt-3">
-                    Usuarios
+                    Editar Ubicaciones
                     <select class="form-control" name="" id="">
                         <option value="1">Si</option>
                         <option value="0">No</option>
                     </select>
                 </div>
                 <div class="col-md-3 pt-3">
-                    Usuarios
+                    Eliminar Ubicaciones
                     <select class="form-control" name="" id="">
                         <option value="1">Si</option>
                         <option value="0">No</option>
                     </select>
                 </div>
                 <div class="col-md-3 pt-3">
-                    Usuarios
+                    Equipos
                     <select class="form-control" name="" id="">
                         <option value="1">Si</option>
                         <option value="0">No</option>
                     </select>
                 </div>
                 <div class="col-md-3 pt-3">
-                    Usuarios
+                    Crear Equipos
                     <select class="form-control" name="" id="">
                         <option value="1">Si</option>
                         <option value="0">No</option>
                     </select>
                 </div>
                 <div class="col-md-3 pt-3">
-                    Usuarios
+                    Editar Equipos
                     <select class="form-control" name="" id="">
                         <option value="1">Si</option>
                         <option value="0">No</option>
                     </select>
                 </div>
                 <div class="col-md-3 pt-3">
-                    Usuarios
+                    Eliminar Equipos
                     <select class="form-control" name="" id="">
                         <option value="1">Si</option>
                         <option value="0">No</option>
                     </select>
                 </div>
-                
+                <div class="col-md-3 pt-3">
+                    Actividades
+                    <select class="form-control" name="" id="">
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div class="col-md-3 pt-3">
+                    Crear Actividades
+                    <select class="form-control" name="" id="">
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div class="col-md-3 pt-3">
+                    Editar Actividades
+                    <select class="form-control" name="" id="">
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div class="col-md-3 pt-3">
+                    Eliminar Actividades
+                    <select class="form-control" name="" id="">
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div class="col-md-3 pt-3">
+                    Agregar actividades a equipos
+                    <select class="form-control" name="" id="">
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div class="col-md-3 pt-3">
+                    Quitar actividades de equipos
+                    <select class="form-control" name="" id="">
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+      
+                <div class="col-md-3 pt-3">
+                    Reportes de equipos
+                    <select class="form-control" name="" id="">
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div class="col-md-3 pt-3">
+                    Reportes de mantenimientos
+                    <select class="form-control" name="" id="">
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div class="col-md-3 pt-3">
+                    Ver mantenimientos
+                    <select class="form-control" name="" id="">
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div class="col-md-3 pt-3">
+                    Ordenes
+                    <select class="form-control" name="" id="">
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div class="col-md-3 pt-3">
+                    Crear Ordenes
+                    <select class="form-control" name="" id="">
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div class="col-md-3 pt-3">
+                    Editar ordenes
+                    <select class="form-control" name="" id="">
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div class="col-md-3 pt-3">
+                    Eliminar ordenes
+                    <select class="form-control" name="" id="">
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div class="col-md-3 pt-3">
+                    Programas
+                    <select class="form-control" name="" id="">
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div class="col-md-3 pt-3">
+                    Crear Programas
+                    <select class="form-control" name="" id="">
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div class="col-md-3 pt-3">
+                    Editar Programas
+                    <select class="form-control" name="" id="">
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div class="col-md-3 pt-3">
+                    Agregar o quitar equipos al Programa
+                    <select class="form-control" name="" id="">
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div class="col-md-3 pt-3">
+                    Calendario
+                    <select class="form-control" name="" id="">
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div class="col-md-3 pt-3">
+                    Asignar fecha
+                    <select class="form-control" name="" id="">
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div class="col-md-3 pt-3">
+                    Editar asignacion de fecha
+                    <select class="form-control" name="" id="">
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
             </div>
             <input class="btn btn-info col-md-12 mt-3" type="submit" value="Guardar">
         </form>

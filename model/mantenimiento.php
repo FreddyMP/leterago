@@ -101,6 +101,25 @@ class Mantenimiento{
         return $mantenimiento;
     }
 
+    public function find_with_equipo($id){
+        include_once("kon.php");
+        $conexion = new Kon();
+        $con = $conexion->conn();
+
+        $query = "SELECT e.description as nombre, e.codigo as cod, m.id as id FROM mantenimientos m
+                INNER JOIN equipos e on e.id = m.equipo
+                 where e.id = $id limit 1 ";
+
+        try {
+            $exc = $con->query($query);
+            $mantenimiento = mysqli_fetch_assoc($exc);
+            return $mantenimiento;
+        } catch (\Throwable $th) {
+            return $th; 
+        }
+    }
+
+
     public function find_details($id){
         $conexion = new Kon();
         $con = $conexion->conn();

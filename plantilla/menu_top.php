@@ -26,66 +26,148 @@ if(isset($_SESSION["usuario_Log_Username"])){
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
     <li class="nav-item dropdown">
+        <?php
+           if($permisos["Modulo_ProgramaMantenimiento"] == 1  || $permisos["Crear_Modulo_ProgramaMantenimiento"]== 1 || $permisos["calendario"]== 1){
+          ?>
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Programacion
         </a>
+        <?php
+           }
+           ?>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+       
           <a class="dropdown-item" href="list_programas.php">Programas</a>
            <div class="dropdown-divider"></div>
+           <?php
+           if($permisos["Crear_Modulo_ProgramaMantenimiento"]== 1){
+          ?>
           <a class="dropdown-item" href="crear_programas.php">Crear programa</a>
           <div class="dropdown-divider"></div>
+          <?php
+           }
+           ?>
+                 <?php
+           if($permisos["calendario"]== 1){
+          ?>
           <a class="dropdown-item" href="list_calendario.php">Calendario</a>
+          <?php
+           }
+          ?>
         </div>
       </li>
       <li class="nav-item dropdown">
+      <?php
+           if($permisos["reportes_mantenimientos"] == 1  || $permisos["Modulo_Ordenes"]== 1 || $permisos["Crear_Modulo_Ordenes"]== 1){
+          ?>
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Mantenimiento
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="list_mantenimientos.php">Reportes de mantenimiento</a>
-          <div class="dropdown-divider"></div>
+        <?php
+           }
+           ?>
+
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <?php
+           if($permisos["reportes_mantenimientos"] == 1 ){
+          ?>
+            <a class="dropdown-item" href="list_mantenimientos.php">Reportes de mantenimiento</a>
+            <div class="dropdown-divider"></div>
+          <?php
+           }
+           ?>
+
          <!-- <a class="dropdown-item" href="crear_mantenimiento.php">Crear mantenimiento</a>
           <div class="dropdown-divider"></div> -->
+          <?php
+           if($permisos["Modulo_Ordenes"] == 1 ){
+          ?>
           <a class="dropdown-item" href="list_ordenes.php">Ordenes</a>
           <div class="dropdown-divider"></div>
+          <?php
+           }
+          ?>
+          <?php
+           if($permisos["Crear_Modulo_Ordenes"] == 1 ){
+          ?>
           <a class="dropdown-item" href="crear_ordenes.php">Crear Ordenes</a>
-
+            <?php
+            }
+            ?>
         </div>
       </li>
       <li class="nav-item dropdown">
+        <?php
+           if($permisos["Equipos"] == 1  || $permisos["Crear_equipos"]== 1 || $permisos["actividades"]== 1  || $permisos["Crear_actividades"]== 1){
+          ?>
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Equipos
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="list_equipos.php">Equipos</a>
-          <div class="dropdown-divider"></div>
+        <?php
+           }
+          ?>
+            <?php
+           if($permisos["Equipos"] == 1 ){
+            ?>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="list_equipos.php">Equipos</a>
+              <div class="dropdown-divider"></div>
+            <?php
+              }
+            ?>
+            <?php
+           if($permisos["Crear_Equipos"] == 1 ){
+            ?>
           <a class="dropdown-item" href="crear_equipo.php">Crear equipos</a>
           <div class="dropdown-divider"></div>
+          <?php
+           }
+          ?>
+          <?php
+           if($permisos["Actividades"] == 1 ){
+          ?>
           <a class="dropdown-item" href="list_actividades.php">Actividades</a>
           <div class="dropdown-divider"></div>
+          <?php
+           }
+           ?>
+               <?php
+           if($permisos["Crear_Actividades"] == 1 ){
+          ?>
           <a class="dropdown-item" href="crear_actividades.php">Crear actividades</a>
-
+            <?php
+           }
+           ?>
         </div>
       </li>
+  
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Categorias
-        </a>
+          <?php
+           if($permisos["Ubicaciones"] == 1  || $permisos["Crear_ubicaciones"]== 1){
+            ?>
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Ubicaciones
+              </a>
+            <?php
+            }
+           ?>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="list_categorias.php">Categorias</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="crear_categorias.php">Crear categorias</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Ubicaciones
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <?php
+           if($permisos["Ubicaciones"] == 1){
+            ?>
             <a class="dropdown-item" href="list_ubicaciones.php">Ubicaciones</a>
+            <?php
+           }
+            ?>
+                <?php
+           if($permisos["Crear_ubicaciones"] == 1){
+            ?>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="crear_ubicacion.php">Crear ubicaciones</a>
-        </div>
+              <a class="dropdown-item" href="crear_ubicacion.php">Crear ubicaciones</a>
+            </div>
+            <?php
+            }
+           ?>
       </li>
       <?php
            if($permisos["Modulo_Usuarios"] == 1 || $permisos["Modulo_Roles"]== 1){

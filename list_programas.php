@@ -14,6 +14,7 @@ $programa_exc = $programa_instance->list_header();
       <div class = "filtros mb-4">
         <div class="row">
         <div class="col-md-12">
+          <!--
             <div class="row mb-4">
               <div class="col-md-2">
                 <button class="btn text-primary" id="filtros">Filtros <img class="ml-3" src="imagen/settings.png" width="20" alt=""> </button>
@@ -33,6 +34,7 @@ $programa_exc = $programa_instance->list_header();
                 </div>
               </div>
             </div>
+-->
           </div>
         </div>
       </div>

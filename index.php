@@ -23,14 +23,14 @@
 <form method="post" action = "controllers/login.php">
     <link rel="stylesheet" href="css/login.css">
   <div class="group">
-    <input type="text" name="username"><span class="highlight"></span><span class="bar"></span>
-    <label>Name</label>
+    <input type="text" placeholder="Usuario" name="username"><span class="highlight"></span><span class="bar"></span>
+    
   </div>
   <div class="group">
-    <input type="password" name="password"><span class="highlight"></span><span class="bar"></span>
-    <label>Password</label>
+    <input type="password" placeholder="Contrasena" name="password"><span class="highlight"></span><span class="bar"></span>
+    
   </div>
-  <input type="submit" class="button buttonBlue" value = "Acceder"/>
+  <input type="submit"  class="button buttonBlue" value = "Acceder"/>
    
   
 </form>

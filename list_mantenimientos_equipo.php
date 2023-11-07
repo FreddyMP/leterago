@@ -37,7 +37,7 @@ $mantenimientos = $mantenimientos_instance->find_by_equipo($id);
                 </div>
               </div>
               <div class="col-md-3">
-                <button class="btn btn-info ml-3 pl-4 pr-4">Exportar</button>
+                <a class="btn btn-danger text-light ml-3 Generar_PDF">PDF</a>
               </div>
             </div>
           </div>
@@ -103,4 +103,12 @@ $mantenimientos = $mantenimientos_instance->find_by_equipo($id);
       });
   });
 
+  $(".Generar_PDF").click(function(){
+    id = $("#id").val();
+    nombre = $("#nombre").val();
+    desde = $("#desde").val();
+    hasta = $("#hasta").val();
+
+    window.open("pdf/mantenimientos_equipo_especifico.php?nombre="+nombre+"&&desde="+desde+"&&hasta="+hasta+"&&id="+id);
+  });
 </script>

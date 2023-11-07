@@ -36,7 +36,7 @@ $mantenimientos = $mantenimientos_instance->list();
             </div>
           </div>
           <div class="col-md-1 float-right p">
-              <button class="btn btn-danger float-right">PDF</button>
+              <a class="btn btn-danger text-light float-right Generar_PDF">PDF</a>
           </div>
         </div>
           <div id="resultado">
@@ -100,6 +100,17 @@ $mantenimientos = $mantenimientos_instance->list();
             $("#resultado").html(response);
           }
       });
+  });
+
+  $(".Generar_PDF").click(function(){
+    
+    codigo = $("#codigo").val();
+    nombre = $("#nombre").val();
+    ubicacion  = $("#ubicacion").val();
+    desde = $("#desde").val();
+    hasta = $("#hasta").val();
+
+    window.open("pdf/list_mantenimientos.php?nombre="+nombre+"&&desde="+desde+"&&hasta="+hasta+"&&codigo="+codigo+"&&ubicacion="+ubicacion);
   });
 
 </script>

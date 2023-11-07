@@ -34,7 +34,7 @@ $calendarios = $calendario_instance->list_ejecuciones($programa);
           </div>
         </div>
         <div class="col-md-2">
-          <button class="btn btn-info ml-3 pl-4 pr-4">Exportar</button>
+          <button class="btn btn-danger text-light Generar_PDF ml-3 pl-4 pr-4">PDF</button>
         </div>
       </div> 
 </div>
@@ -133,6 +133,16 @@ $calendarios = $calendario_instance->list_ejecuciones($programa);
             $("#resultado").html(response);
           }
       });
+  });
+
+  $(".Generar_PDF").click(function(){
+    codigo = $("#codigo").val();
+    id = $("#id").val();
+    nombre = $("#nombre").val();
+    desde = $("#desde").val();
+    hasta = $("#hasta").val();
+
+    window.open("pdf/equipos_tareas.php?codigo="+codigo+"&&nombre="+nombre+"&&desde="+desde+"&&hasta="+hasta+"&&id="+id);
   });
 
 </script>

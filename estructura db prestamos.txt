@@ -1,0 +1,173 @@
+empresas{
+	id
+	nombre
+	registrado_Por
+	fecha_registro
+	correo
+	telefono1
+	telefono2
+	direccion
+	status
+	fecha_ultimo_pago
+	fecha_siguente_pago
+	RNC/cedula
+}
+pago_empresas{
+	id
+	id_empresa
+	precio_sin_itbis
+	itbis
+	precio_con_itbis
+	fecha
+	comprobante
+	numero_recibo
+}
+
+Autocreacion de una nueva base de datos con las tablas 
+Roles{
+	id
+	descripcion
+	fecha_creacion
+	creado_por
+	fecha_modificacion
+	modificado_por
+	fecha_eliminacion
+	eliminado_por
+}
+
+permisos{
+	id
+	id_rol
+	permiso1
+	permiso2
+	...
+}
+
+usuarios{
+	id
+	correo
+	contrasena
+	id_rol
+	fecha_creacion
+	creado_por
+	fecha_modificacion
+	modificado_por
+	fecha_eliminacion
+	eliminado_por	
+}
+clientes{
+	id
+	nombre
+	apellido
+	RNC/Cedula
+	Identificacion_garante
+	direccion
+	ocupacion
+	ingresos
+	telefono1
+	telefono2
+	correo
+	lugar_de_trabajo
+	fecha_creacion
+	creado_por
+	fecha_modificacion
+	modificado_por
+	fecha_eliminacion
+	eliminado_por
+}
+
+prestamos{
+	id
+	id_cliente
+	valor_de_prestamo
+	balance_actual
+	fecha_desembolso
+	dia_de_pago
+	tipo_de_interes (anual, mensual, al_valor)
+	tasa_de_interes 
+	fecha_cambio_tasa_de_interes
+	tipo_de_amortizacion
+	tiempo_de_prestamo
+	aplica_garantia
+	fecha_creacion
+	creado_por
+	fecha_modificacion
+	modificado_por
+	fecha_eliminacion
+	eliminado_por
+}
+garantias{
+	id
+	identificacion
+	descripcion
+	id_prestamo
+	nota
+	fecha_creacion
+	creado_por
+	fecha_modificacion
+	modificado_por
+	fecha_eliminacion
+	eliminado_por
+}
+documentos{
+	id
+	descripcion
+	texto
+	fecha_creacion
+	creado_por
+	fecha_modificacion
+	modificado_por
+	fecha_eliminacion
+	eliminado_por
+}
+comprobantes{
+	id
+	descripcion
+	iniciales
+	cantidad_numerica
+	numero_siguiente	
+}
+recibos{
+	id
+	id_prestamo
+	id_cliente
+	monto_capital
+	monto_interes
+	monto_total
+	monto_pendiente
+	numero_recibo
+	hora
+	fecha_creacion
+	creado_por
+	fecha_modificacion
+	modificado_por
+	fecha_eliminacion
+	eliminado_por
+}
+abonos{
+	id
+	id_prestamo
+	tipo_de_abono(abono a capital, abono disminucion de cuotas)
+	monto_abonado
+	monto_pre_abono
+	monto_post_abono
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

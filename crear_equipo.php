@@ -54,17 +54,7 @@
                         <option value="Inactivo">Inactivo</option>
                     </select>
                 </div>
-                <div class="col-md-6 mt-3">
-                    <select class="form-control" name="categoria" id="">
-                        <?php 
-                            while($row = mysqli_fetch_assoc($categorias)){
-                        ?>
-                        <option value="<?php echo $row["id"]?>"><?php echo $row["description"]?></option>
-                        <?php
-                            }
-                        ?>
-                    </select>
-                </div>
+
                 <div class="col-md-6 mt-3">
                 <select class="form-control" name="ubicacion" id="">
                         <?php 
