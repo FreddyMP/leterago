@@ -9,7 +9,7 @@ $calendarios = $calendario_instance->list_ejecuciones($programa);
 ?>
 
 <link rel="stylesheet" href="css/form.css">
-<div class="Container">
+<div class="bloque_contenido">
     <br>
     <h3>Tareas pendientes</h3>
     <div class="formularios">

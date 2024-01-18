@@ -18,7 +18,7 @@ $header = $_GET["id_header"];
 ?>
 
 <link rel="stylesheet" href="css/form.css">
-  <div class="Container">
+  <div class="bloque_contenido">
     <br>
     <h3>Detalles de la programacion: </h3>
     <div class="formularios">

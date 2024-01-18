@@ -9,7 +9,7 @@
     $rol_permisos = $rol_instance->find_edit($id_rol);
 ?>
 <link rel="stylesheet" href="css/form.css">
-<div class="Container"><br>
+<div class="bloque_contenido"><br>
     <h3>Editar rol</h3>
     <div class="formularios">
         <form action="controllers/editar_rol.php" method="post">

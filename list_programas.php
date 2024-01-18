@@ -7,7 +7,7 @@ $programa_exc = $programa_instance->list_header();
 ?>
 
 <link rel="stylesheet" href="css/form.css">
-<div class="Container">
+<div class="bloque_contenido" >
     <br>
     <h3>Programaciones</h3>
     <div class="formularios">
@@ -58,12 +58,24 @@ $programa_exc = $programa_instance->list_header();
       <td>
         
         <?php 
+          $hoy = date("Y-m-d");
           $estado = $row["estado"];
           $id = $row["id"];
           if($estado != 0){
-        ?>
-          <a href="list_tareas.php?programa=<?php echo $id ?>"><button class="btn btn-success mb-2">Tareas</button></a>
-          <a href="edit_programa.php?id=<?php echo $id ?>"><button class="btn btn-warning mb-2">Editar</button></a>
+            if($row["fecha_fin"] >= $hoy ) { ?>
+              <a href="list_tareas.php?programa=<?php echo $id ?>">
+                <button class="btn btn-success mb-2">
+                  Tareas <?php
+                        if($row["fecha_fin"] <= $hoy ){
+                          echo "es menor";
+                        }
+                        ?>
+                </button>
+              </a>
+            <?php
+              }
+            ?>
+            <a href="edit_programa.php?id=<?php echo $id ?>"><button class="btn btn-warning mb-2">Editar</button></a>
           <?php
           }
           ?>

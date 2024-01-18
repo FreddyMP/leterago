@@ -11,7 +11,7 @@
     $actividades = $equipo_actividad_instance->list_actividades_search($id);
 ?>
 <link rel="stylesheet" href="css/form.css">
-<div class="Container">
+<div class="bloque_contenido">
     <br>
     <h3>Agregar actividades</h3>
     <div class="formularios">

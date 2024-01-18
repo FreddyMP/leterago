@@ -6,7 +6,7 @@
 
 
 <link rel="stylesheet" href="css/form.css">
-<div class="Container"><br>
+<div class="bloque_contenido"><br>
     <h3>Asignar permisos</h3>
     <div class="formularios">
         <form action="../backend/controllers/create_rol.php" method="post">

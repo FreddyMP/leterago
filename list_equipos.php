@@ -6,7 +6,7 @@
     $exc_equipos = $equipos_instance->list();
 ?>
 <link rel="stylesheet" href="css/form.css">
-<div class="Container">
+<div class="bloque_contenido">
     <br>
     <h3>Equipos</h3>
     <div class="formularios">

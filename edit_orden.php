@@ -6,7 +6,7 @@
     $orden = $Ordenes_instance->find($id);
 ?>
 <link rel="stylesheet" href="css/form.css">
-<div class="Container"><br>
+<div class="bloque_contenido"><br>
 <?php
  
     if(isset($_GET["error_create"])){

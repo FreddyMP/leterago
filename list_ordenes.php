@@ -6,7 +6,7 @@ $ordenes = $Ordenes_instance->list();
 ?>
 
 <link rel="stylesheet" href="css/form.css">
-<div class="Container">
+<div class="bloque_contenido">
     <br>
     <h3>Ordenes</h3>
     <div class="formularios">

@@ -3,7 +3,7 @@ include("plantilla/menu_top.php");
 ?>
 
 <link rel="stylesheet" href="css/form.css">
-<div class="Container">
+<div class="bloque_contenido">
     <br>
     <h3>Actividades para el equipo: BB003</h3>
     <div class="formularios">

@@ -120,7 +120,7 @@ CREATE TABLE `equipos` (
   `marca` varchar(100) DEFAULT NULL,
   `modelo` varchar(100) DEFAULT NULL,
   `serie` varchar(100) DEFAULT NULL,
-  `estado` varchar(100) DEFAULT NULL,
+  `estado` varchar(100) DEFAULT 'Activo',
   `frecuencia` int(1) NOT NULL,
   `observaciones` text DEFAULT NULL,
   `id_almacen` int(11) NOT NULL,

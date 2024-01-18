@@ -18,7 +18,7 @@
         ?>
 
 <link rel="stylesheet" href="css/form.css">
-<div class="Container">
+<div class="bloque_contenido">
     <br>
     <h3>Asignacion de fechas</h3>
     <div class="formularios">

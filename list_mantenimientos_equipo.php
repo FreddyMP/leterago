@@ -10,7 +10,7 @@ $mantenimientos = $mantenimientos_instance->find_by_equipo($id);
 ?>
 
 <link rel="stylesheet" href="css/form.css">
-<div class="Container">
+<div class="bloque_contenido">
     <br>
     <h3>AA0012: Aire acondicionado inverte</h3>
     <div class="formularios">

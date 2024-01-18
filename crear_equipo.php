@@ -15,7 +15,7 @@
     
 ?>
 <link rel="stylesheet" href="css/form.css">
-<div class="Container"><br>
+<div class="bloque_contenido"><br>
 <?php
  
     if(isset($_GET["error_create"])){
@@ -34,21 +34,27 @@
         <form action="controllers/create_equipo.php" method="post">
             <div class="row">
             <div class="col-md-4 mt-3">
+                    <label for="">Codigo</label>
                     <input class="form-control" name="codigo" type="text" placeholder="Codigo" required>
                 </div>
                 <div class="col-md-8 mt-3">
+                    <label for="">Descripcion</label>
                     <input class="form-control" name="description" type="text" placeholder="Descripcion" required>
                 </div>
                 <div class="col-md-6 mt-3">
+                    <Label>Marca</Label>
                     <input class="form-control" name="marca" type="text" placeholder="Marca" required>
                 </div>
                 <div class="col-md-6 mt-3">
+                    <Label>Modelo</Label>
                     <input class="form-control" name="modelo" type="text" placeholder="Modelo" required>
                 </div>
                 <div class="col-md-6 mt-3">
+                    <label for="">Serial</label>
                     <input class="form-control" name="serie" type="text" placeholder="Serie" required>
                 </div>
                 <div class="col-md-6 mt-3">
+                    <label for="">Estado</label>
                     <select class="form-control" name="estado" id="">
                         <option value="Activo">Activo</option>
                         <option value="Inactivo">Inactivo</option>
@@ -56,6 +62,7 @@
                 </div>
 
                 <div class="col-md-6 mt-3">
+                    <label for="">Ubicacion</label>
                 <select class="form-control" name="ubicacion" id="">
                         <?php 
                             while($row = mysqli_fetch_assoc($ubicaciones)){
@@ -67,6 +74,7 @@
                     </select>
                 </div>
                 <div class="col-md-6 mt-3">
+                    <label for="">Frecuencia de mantenimiento</label>
                     <select class="form-control" name="frecuencia" id="">
                         <option value="1">Mensual</option>
                         <option value="2">Bimensual</option>

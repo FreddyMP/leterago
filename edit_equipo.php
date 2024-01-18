@@ -20,7 +20,7 @@
     
 ?>
 <link rel="stylesheet" href="css/form.css">
-<div class="Container"><br>
+<div class="bloque_contenido"><br>
 <?php
  
     if(isset($_GET["error_create"])){
@@ -39,22 +39,28 @@
         <form action="controllers/editar_equipo.php" method="post">
             <div class="row">
             <div class="col-md-4 mt-3">
+                <LAbel>Codigo</LAbel>
                     <input type="hidden" name="id" value="<?php echo $equipos["id"] ?>">
                     <input class="form-control" name="codigo" value="<?php echo $equipos["codigo"] ?>" type="text" placeholder="Codigo" required>
                 </div>
                 <div class="col-md-8 mt-3">
+                    Descripcion
                     <input class="form-control" name="description" value="<?php echo $equipos["description"] ?>" type="text" placeholder="Descripcion" required>
                 </div>
                 <div class="col-md-6 mt-3">
+                    <label for="">Marca</label>
                     <input class="form-control" name="marca" value="<?php echo $equipos["marca"] ?>" type="text" placeholder="Marca" required>
                 </div>
                 <div class="col-md-6 mt-3">
+                    <label for="">Modelo</label>
                     <input class="form-control" name="modelo" value="<?php echo $equipos["modelo"] ?>" type="text" placeholder="Modelo" required>
                 </div>
                 <div class="col-md-6 mt-3">
+                    <label for="">Serie</label>
                     <input class="form-control" name="serie" value="<?php echo $equipos["serie"] ?>" type="text" placeholder="Serie" required>
                 </div>
                 <div class="col-md-6 mt-3">
+                    <label for="">Estado</label>
                     <select class="form-control" name="estado" id="">
                         <?php
                             if($equipos["estado"]=='Activo'){
@@ -71,26 +77,10 @@
                         ?>
                     </select>
                 </div>
-                <div class="col-md-6 mt-3">
-                    <select class="form-control" name="categoria" id="">
-                        <?php 
-                            $get_description = new Categorias();
-                            $description = $get_description->find($equipos["id_categoria"]);
-                            ?>
-                            <option value="<?php echo $description["id"]?>"><?php echo $description["description"]?></option>
-                            <?php
-                            while($row = mysqli_fetch_assoc($categorias)){
-                                if($description["id"] != $row["id"]){
-                        ?>
-                        <option value="<?php echo $row["id"]?>"><?php echo $row["description"]?></option>
-                        <?php
-                                }
-                            }
-                        ?>
-                    </select>
-                </div>
+
                 
                 <div class="col-md-6 mt-3">
+                    <label for="">Ubicacion</label>
                 <select class="form-control" name="ubicacion" id="">
                         <?php 
                             $get_description = new Ubicaciones();
@@ -109,9 +99,10 @@
                     </select>
                 </div>
                 <div class="col-md-6 mt-3">
+                    <label for="">Frecuencia de mantenimientos</label>
                     <select class="form-control" name="frecuencia" id="">
                             <?php 
-                            if($row['frecuencia']== 1){
+                            if($equipos['frecuencia']== 1){
                                 ?>
                                     <option value="1">Mensual</option>
                                     <option value="2">Bimensual</option>
